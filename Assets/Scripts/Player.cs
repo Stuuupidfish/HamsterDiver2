@@ -51,6 +51,16 @@ public class Player : MonoBehaviour
         {
             oxygen = 100;
         }
+
+        //death from drowning??
+        if (ui.IsGameOver)
+        {
+            oxygen = 0f;
+            animator.SetTrigger("Dead");
+            audioSource.Stop();
+            audioSource.PlayOneShot(die);
+            GetComponent<SpriteRenderer>().sprite = dead;
+        }
     
 
     }

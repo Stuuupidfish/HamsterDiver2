@@ -7,6 +7,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip click;
     [SerializeField] private GameObject instructions;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +19,27 @@ public class MenuManager : MonoBehaviour
     {
         
     }
+
+    public void LoadLevel(string levelName)
+    {
+        StartCoroutine(LoadLevelCoroutine(levelName));
+    }
+    private IEnumerator LoadLevelCoroutine(string levelName)
+    {
+        audioSource.PlayOneShot(click);
+        if (click != null)
+            yield return new WaitForSeconds(click.length);
+        else
+            yield return null;
+        SceneManager.LoadScene(levelName);
+    }
+
     public void LoadGame()
     {
         StartCoroutine(LoadGameCoroutine());
     }
 
+    
     private IEnumerator LoadGameCoroutine()
     {
         audioSource.PlayOneShot(click);
