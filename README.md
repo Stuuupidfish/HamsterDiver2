@@ -1,3 +1,3 @@
-Submission for Global Game Jam 2026 at NYU
+## CURRENTLY A WIP-- NO RELEASE YET
 
-https://globalgamejam.org/games/2026/hamster-diver-4
+Original submission for Global Game Jam 2026 at NYU: https://globalgamejam.org/games/2026/hamster-diver-4
