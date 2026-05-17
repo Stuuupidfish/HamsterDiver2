@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip[] hurt;
     [SerializeField] private AudioClip die;
     [SerializeField] private float drainRate = 3f; // oxygen per second]
+    private bool isDead = false;
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -52,14 +53,20 @@ public class Player : MonoBehaviour
             oxygen = 100;
         }
 
-        //death from drowning??
-        if (ui.IsGameOver)
+        // Death from drowning - trigger death animation only once
+        if (oxygen <= 0 && !isDead)
         {
             oxygen = 0f;
+            isDead = true;
             animator.SetTrigger("Dead");
             audioSource.Stop();
             audioSource.PlayOneShot(die);
             GetComponent<SpriteRenderer>().sprite = dead;
+        }
+
+        if (ui.IsGameOver)
+        {
+            isDead = true;
         }
     
 
@@ -69,13 +76,13 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         float moveInput = 0f;
-        if (oxygen != 0)
+        if (!isDead && !gameManager.PlayerWins) // Prevent movement if player has won
         {
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
             {
                 moveInput = -1f;
             }
-            else if (Input.GetKey(KeyCode.RightArrow))
+            else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             {
                 moveInput = 1f;
             }
@@ -88,23 +95,28 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (isDead)
+        {
+            return;
+        }
         if (other.gameObject.CompareTag("Enemy"))
         {
+            // Don't process enemy hits if already dead
             //Debug.Log("Trigger");
             mask.CrackMask();
             mask.ShakeMask();
             Enemy enemy = other.GetComponent<Enemy>();
-            if (!ui.IsGameOver && oxygen - enemy.OxygenDepletion <= 0)
+            if (oxygen - enemy.OxygenDepletion <= 0)
             {
                 //Debug.Log("Dead");
                 oxygen = 0f;
-                animator.SetTrigger("Hurt");
+                isDead = true;
                 animator.SetTrigger("Dead");
                 audioSource.Stop();
                 audioSource.PlayOneShot(die);
                 GetComponent<SpriteRenderer>().sprite = dead;
             }
-            else if (!ui.IsGameOver)
+            else
             {
                 gameManager.TriggerSlowDown();
                 oxygen -= enemy.OxygenDepletion;

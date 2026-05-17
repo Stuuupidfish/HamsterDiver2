@@ -652,6 +652,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game
       objectReference: {fileID: 0}
+    - target: {fileID: 1599612579918797926, guid: f868970481b5d8641b3f7a1bb26ed467, type: 3}
+      propertyPath: enemySpawnInterval
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5672685065909757848, guid: f868970481b5d8641b3f7a1bb26ed467, type: 3}
       propertyPath: m_LocalPosition.x
       value: -82.393776

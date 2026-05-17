@@ -18,6 +18,7 @@ public class UI : MonoBehaviour
     [SerializeField] private AudioClip win;
 
     private bool isPaused = false;
+    private bool hasWinBeenTriggered = false;
     
     void Start()
     {
@@ -49,9 +50,10 @@ public class UI : MonoBehaviour
             GameOver();
         }
         
-        if (gameManager.PlayerWins)
+        if (gameManager.PlayerWins && !hasWinBeenTriggered)
         {
             Win();
+            hasWinBeenTriggered = true;
         }
     }
     public void GameOver()

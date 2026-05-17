@@ -696,7 +696,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2503908775832505296
@@ -1072,8 +1072,8 @@ MonoBehaviour:
   scoreText: {fileID: 213154185078339520}
   gameOver: {fileID: 2503908775832505296}
   youWin: {fileID: 1012079529701295935}
-  paused: {fileID: 0}
-  menu: {fileID: 0}
+  paused: {fileID: 4036313544786388614}
+  menu: {fileID: 8206022737089474234}
   audioSource: {fileID: 5288936985988051125}
   win: {fileID: 8300000, guid: 30e2e4cd09f1a6941af7a4c1af9a8756, type: 3}
 --- !u!82 &5288936985988051125
@@ -1398,7 +1398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4516006237260003158
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1646,7 +1646,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &6253857783930990413
@@ -1697,18 +1697,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 8327839836636501184, guid: bc70b92c6e144a44bb6a811624664001, type: 3}
   - {fileID: 6803951599151732553, guid: 811b13584e86b3e4f9a709c0c2315b3f, type: 3}
-  - {fileID: 2872361757942457594, guid: fd4328d84ece00540912f1deecaf2453, type: 3}
   - {fileID: 7574885625988010712, guid: b66431e29d99df54aaede28c3f0e8e67, type: 3}
   - {fileID: 1507043665886815582, guid: 310fdea26d043834d863b215eba4c7bd, type: 3}
   airBubble: {fileID: 7941259957474630105, guid: 7f6d4061f8a9a53429b484274acdeff7, type: 3}
   bkg: {fileID: 2749001143952452663}
-  defaultSpeed: 0.1
+  defaultSpeed: 0.07
   audioSource: {fileID: 7854702162288066945}
   click: {fileID: 8300000, guid: df97dcaab30c5f64e9db32ca6ebc780c, type: 3}
   bubbleSpawnInterval: 1.5
-  enemySpawnInterval: 5.5
+  enemySpawnInterval: 15
 --- !u!82 &7854702162288066945
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2484,7 +2482,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &7450210139248896893
@@ -2614,7 +2612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2204071568132496908
 RectTransform:
   m_ObjectHideFlags: 0

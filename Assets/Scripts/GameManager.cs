@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         if (!ui.IsGameOver && currentY >= -130)
         {
             bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed);
-            if (currentY > -110) //to prevent spawning enemies at the surface
+            if (currentY > -100) //to prevent spawning enemies at the surface
             {
                 if (Vector2.Distance(bkg.GetComponent<Rigidbody2D>().position, lastSpawnPosition) >= enemySpawnInterval)
                 {
