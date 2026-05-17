@@ -437,8 +437,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Play
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d0b52e8f717f6f40911aa6a1f8f1cde, type: 2}
+  m_sharedMaterial: {fileID: -3266957739845052083, guid: 4d0b52e8f717f6f40911aa6a1f8f1cde, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -655,8 +655,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: How to Play
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d0b52e8f717f6f40911aa6a1f8f1cde, type: 2}
+  m_sharedMaterial: {fileID: -3266957739845052083, guid: 4d0b52e8f717f6f40911aa6a1f8f1cde, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -952,6 +952,7 @@ MonoBehaviour:
   rotationAmplitude: 1
   rotationSpeed: 0.9
   pressedScale: 0.92
+  hoveredScale: 1.1
   scaleLerpSpeed: 12
 --- !u!1 &1397619890
 GameObject:
@@ -1107,6 +1108,7 @@ MonoBehaviour:
   rotationAmplitude: 1
   rotationSpeed: 0.9
   pressedScale: 0.92
+  hoveredScale: 1.1
   scaleLerpSpeed: 12
 --- !u!1 &1566430267
 GameObject:
@@ -1262,6 +1264,7 @@ MonoBehaviour:
   rotationAmplitude: 1
   rotationSpeed: 0.9
   pressedScale: 0.92
+  hoveredScale: 1.1
   scaleLerpSpeed: 12
 --- !u!1 &1590886503
 GameObject:

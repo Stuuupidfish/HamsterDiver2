@@ -9,11 +9,15 @@ public class UI : MonoBehaviour
     public TextMeshProUGUI scoreText;
     private Player player;
     private GameManager gameManager;
-    [SerializeField] private GameObject gameOver;
-    [SerializeField] private GameObject youWin;
+    [SerializeField] private GameObject gameOver; //text
+    [SerializeField] private GameObject youWin; //text
+    [SerializeField] private GameObject paused; //text
+    [SerializeField] private GameObject menu;
 
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip win;
+
+    private bool isPaused = false;
     
     void Start()
     {
@@ -26,6 +30,19 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            if (!isPaused)
+            {
+                Pause();
+                isPaused = true;
+            }
+            else
+            {
+                Resume();
+                isPaused = false;
+            }
+        }
         scoreText.text = "Oxygen level: " + player.Oxygen + "%";
         if (player.Oxygen == 0)
         {
@@ -41,10 +58,24 @@ public class UI : MonoBehaviour
     {
         gameOver.SetActive(true);
         IsGameOver = true;
+        menu.SetActive(true);
     }
     public void Win()
     {
         audioSource.PlayOneShot(win);
         youWin.SetActive(true);
+        menu.SetActive(true);
+    }
+    public void Pause()
+    {
+        Time.timeScale = 0f;
+        paused.SetActive(true);
+        menu.SetActive(true);
+    }
+    public void Resume()
+    {
+        Time.timeScale = 1f;
+        paused.SetActive(false);
+        menu.SetActive(false);
     }
 }

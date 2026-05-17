@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject airBubble;
     [SerializeField] private GameObject bkg;
     private Vector2 lastSpawnPosition;
+    [SerializeField] private float defaultSpeed = 0.1f; //0.1f is the original speed, but will be changed for additinal levels so ill treat it as like the basis
     private float downSpeed;
     public float DownSpeed
     {
@@ -33,34 +35,52 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip click;
 
+
+    [SerializeField] private float bubbleSpawnInterval = 1.5f;
+    [SerializeField] private float enemySpawnInterval = 5.5f;
+
+
     // Start is called before the first frame update
     void Start()
     {
         ui = FindObjectOfType<UI>();
         spawnNewEnemy();
-        downSpeed = 0.1f;
+        downSpeed = defaultSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        downSpeed = damageSlowDown ? 0.05f : 0.1f;
-        if (!ui.IsGameOver && bkg.GetComponent<Rigidbody2D>().position.y >= -130)
+
+        if (damageSlowDown)
+        {
+            downSpeed = 0.5f*defaultSpeed;
+        }
+        else
+        {
+            downSpeed = defaultSpeed;
+        }
+        //downSpeed = damageSlowDown ? 0.05f : 0.1f;
+        float currentY = bkg.GetComponent<Rigidbody2D>().position.y;
+        if (!ui.IsGameOver && currentY >= -130)
         {
             bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed);
-            if (Vector2.Distance(bkg.GetComponent<Rigidbody2D>().position, lastSpawnPosition) >= 5.5f)
+            if (currentY > -110) //to prevent spawning enemies at the surface
             {
-                spawnNewEnemy();
-            }
-            // Bubble spawn timer
-            bubbleTimer += Time.deltaTime;
-            if (bubbleTimer >= 1.5f)
-            {
-                spawnAirBubble();
-                bubbleTimer = 0f;
+                if (Vector2.Distance(bkg.GetComponent<Rigidbody2D>().position, lastSpawnPosition) >= enemySpawnInterval)
+                {
+                    spawnNewEnemy();
+                }
+                // Bubble spawn timer
+                bubbleTimer += Time.deltaTime;
+                if (bubbleTimer >= bubbleSpawnInterval)
+                {
+                    spawnAirBubble();
+                    bubbleTimer = 0f;
+                }
             }
         }
-        else if (bkg.GetComponent<Rigidbody2D>().position.y < -130 && bkg.GetComponent<Rigidbody2D>().position.y >= -135.5)
+        else if (!ui.IsGameOver && currentY < -130 && currentY >= -135.5)
         {
             playerWins = true;
             bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed);
@@ -84,13 +104,13 @@ public class GameManager : MonoBehaviour
 
     private void spawnNewEnemy()
     {
-        GameObject newObject = Instantiate(enemies[Random.Range(0, 5)], new Vector2(Random.Range(-5,6), 6), Quaternion.identity);
+        GameObject newObject = Instantiate(enemies[UnityEngine.Random.Range(0, enemies.Length)], new Vector2(UnityEngine.Random.Range(-5,6), 6), Quaternion.identity);
         lastSpawnPosition = bkg.GetComponent<Rigidbody2D>().position;
     }
 
     private void spawnAirBubble()
     {
-        GameObject bubble = Instantiate(airBubble, new Vector2(Random.Range(-2,3),6), Quaternion.identity);
+        GameObject bubble = Instantiate(airBubble, new Vector2(UnityEngine.Random.Range(-2,3),6), Quaternion.identity);
     }
 
     public void Restart()

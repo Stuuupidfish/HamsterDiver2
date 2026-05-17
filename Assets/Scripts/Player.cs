@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip pop;
     [SerializeField] private AudioClip[] hurt;
     [SerializeField] private AudioClip die;
+    [SerializeField] private float drainRate = 3f; // oxygen per second]
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -37,7 +38,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         // Continuous oxygen drain
-        float drainRate = 3f; // oxygen per second
         if (!gameManager.PlayerWins && !ui.IsGameOver)
         {
             if (oxygen > 0)

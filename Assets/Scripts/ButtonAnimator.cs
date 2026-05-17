@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ButtonAnimator : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
+public class ButtonAnimator : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler, IPointerEnterHandler
 {
     [SerializeField] private GameObject button;
 
@@ -15,6 +15,7 @@ public class ButtonAnimator : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
     [Header("Press Feedback")]
     [SerializeField, Range(0.8f, 1f)] private float pressedScale = 0.92f;
+    [SerializeField, Range(1f, 1.5f)] private float hoveredScale = 1.1f;
     [SerializeField] private float scaleLerpSpeed = 12f;
 
     private RectTransform rectTransform;
@@ -24,6 +25,7 @@ public class ButtonAnimator : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     private float seedY;
     private float seedRotation;
     private bool isPressed;
+    private bool isHovered;
 
     private void Awake()
     {
@@ -68,7 +70,7 @@ public class ButtonAnimator : MonoBehaviour, IPointerDownHandler, IPointerUpHand
             target.localRotation = Quaternion.Euler(0f, 0f, rotation);
         }
 
-        float targetScale = isPressed ? pressedScale : 1f;
+        float targetScale = isPressed ? pressedScale : (isHovered ? hoveredScale : 1f);
         target.localScale = Vector3.Lerp(target.localScale, startScale * targetScale, Time.unscaledDeltaTime * scaleLerpSpeed);
     }
 
@@ -82,8 +84,14 @@ public class ButtonAnimator : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         isPressed = false;
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        isHovered = true;
+    }
+
     public void OnPointerExit(PointerEventData eventData)
     {
         isPressed = false;
+        isHovered = false;
     }
 }

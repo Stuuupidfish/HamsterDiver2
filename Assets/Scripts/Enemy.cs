@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     private GameManager gameManager;
 
     private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
     private bool moveRight = false;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip sound;
@@ -23,6 +24,7 @@ public class Enemy : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         rb = gameObject.GetComponent<Rigidbody2D>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         if (rb.position.x < 0)
         {
             moveRight = true;
@@ -31,6 +33,8 @@ public class Enemy : MonoBehaviour
         {
             moveRight = false;
         }
+        // Flip sprite if moving right (coming from left)
+        spriteRenderer.flipX = moveRight;
     }
 
     // Update is called once per frame
@@ -44,8 +48,8 @@ public class Enemy : MonoBehaviour
     void FixedUpdate()
     {
         float moveInput = moveRight ? 1f : -1f;
-        float moveSpeed = speed;
         float downSpeed = gameManager.DownSpeed;
+        float moveSpeed = speed*(downSpeed/0.1f); //left/right move speed is proportional to downwards move speed, so enemies don't move too fast when the background moves faster/slower
         Vector2 pos = rb.position;
         pos.x += moveInput * moveSpeed * Time.fixedDeltaTime;
         pos.y -= downSpeed;
