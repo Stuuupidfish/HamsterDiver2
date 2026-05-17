@@ -443,6 +443,7 @@ MonoBehaviour:
   rotationAmplitude: 1
   rotationSpeed: 0.9
   pressedScale: 0.92
+  hoveredScale: 1.1
   scaleLerpSpeed: 12
 --- !u!1 &431331046
 GameObject:
@@ -1296,6 +1297,7 @@ MonoBehaviour:
   rotationAmplitude: 1
   rotationSpeed: 0.9
   pressedScale: 0.92
+  hoveredScale: 1.1
   scaleLerpSpeed: 12
 --- !u!1 &1063940570
 GameObject:
@@ -1944,6 +1946,7 @@ MonoBehaviour:
   rotationAmplitude: 1.5
   rotationSpeed: 0.9
   pressedScale: 0.92
+  hoveredScale: 1.1
   scaleLerpSpeed: 12
 --- !u!1 &1252597028
 GameObject:
@@ -2227,6 +2230,7 @@ MonoBehaviour:
   rotationAmplitude: 1.5
   rotationSpeed: 0.9
   pressedScale: 0.92
+  hoveredScale: 1.1
   scaleLerpSpeed: 12
 --- !u!1 &1623708853
 GameObject:
@@ -2964,7 +2968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6555326635753271948, guid: d13d477191dd230488f06a3ea1b19909, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6555326635753271948, guid: d13d477191dd230488f06a3ea1b19909, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2972,7 +2976,11 @@ PrefabInstance:
       objectReference: {fileID: 647086613}
     - target: {fileID: 6555326635753271948, guid: d13d477191dd230488f06a3ea1b19909, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadGame
+      value: LoadLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6555326635753271948, guid: d13d477191dd230488f06a3ea1b19909, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: L2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

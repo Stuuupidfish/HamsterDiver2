@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (isDead)
+        if (isDead || gameManager.PlayerWins || ui.IsGameOver)
         {
             return;
         }

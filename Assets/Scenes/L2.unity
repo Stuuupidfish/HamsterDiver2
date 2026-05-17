@@ -653,9 +653,17 @@ PrefabInstance:
       value: Game
       objectReference: {fileID: 0}
     - target: {fileID: 1599612579918797926, guid: f868970481b5d8641b3f7a1bb26ed467, type: 3}
+      propertyPath: enemies.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599612579918797926, guid: f868970481b5d8641b3f7a1bb26ed467, type: 3}
       propertyPath: enemySpawnInterval
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 1599612579918797926, guid: f868970481b5d8641b3f7a1bb26ed467, type: 3}
+      propertyPath: enemies.Array.data[3]
+      value: 
+      objectReference: {fileID: 2872361757942457594, guid: fd4328d84ece00540912f1deecaf2453, type: 3}
     - target: {fileID: 5672685065909757848, guid: f868970481b5d8641b3f7a1bb26ed467, type: 3}
       propertyPath: m_LocalPosition.x
       value: -82.393776
