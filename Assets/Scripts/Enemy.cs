@@ -19,9 +19,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip sound;
 
+    private UI ui;
+
     // Start is called before the first frame update
     void Start()
     {
+        ui = FindObjectOfType<UI>();
         gameManager = FindObjectOfType<GameManager>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -53,7 +56,10 @@ public class Enemy : MonoBehaviour
         Vector2 pos = rb.position;
         pos.x += moveInput * moveSpeed * Time.fixedDeltaTime;
         pos.y -= downSpeed;
-        rb.MovePosition(pos);
+        if (!ui.IsPaused)
+        {
+            rb.MovePosition(pos);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)

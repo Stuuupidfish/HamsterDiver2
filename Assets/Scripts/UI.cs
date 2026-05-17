@@ -18,6 +18,10 @@ public class UI : MonoBehaviour
     [SerializeField] private AudioClip win;
 
     private bool isPaused = false;
+    public bool IsPaused
+    {
+        get { return isPaused; }
+    }
     private bool hasWinBeenTriggered = false;
     
     void Start()
@@ -31,7 +35,7 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
             if (!isPaused)
             {

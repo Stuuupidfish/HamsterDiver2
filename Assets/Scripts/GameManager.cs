@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float enemySpawnInterval = 5.5f;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,42 +52,42 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (damageSlowDown)
+        if (!ui.IsPaused)
         {
-            downSpeed = 0.5f*defaultSpeed;
-        }
-        else
-        {
-            downSpeed = defaultSpeed;
-        }
-        //downSpeed = damageSlowDown ? 0.05f : 0.1f;
-        float currentY = bkg.GetComponent<Rigidbody2D>().position.y;
-        if (!ui.IsGameOver && currentY >= -130)
-        {
-            bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed);
-            if (currentY > -100) //to prevent spawning enemies at the surface
+            if (damageSlowDown)
             {
-                if (Vector2.Distance(bkg.GetComponent<Rigidbody2D>().position, lastSpawnPosition) >= enemySpawnInterval)
+                downSpeed = 0.5f*defaultSpeed;
+            }
+            else
+            {
+                downSpeed = defaultSpeed;
+            }
+            //downSpeed = damageSlowDown ? 0.05f : 0.1f;
+            float currentY = bkg.GetComponent<Rigidbody2D>().position.y;
+            if (!ui.IsGameOver && currentY >= -130)
+            {
+                bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed);
+                if (currentY > -100) //to prevent spawning enemies at the surface
                 {
-                    spawnNewEnemy();
-                }
-                // Bubble spawn timer
-                bubbleTimer += Time.deltaTime;
-                if (bubbleTimer >= bubbleSpawnInterval)
-                {
-                    spawnAirBubble();
-                    bubbleTimer = 0f;
+                    if (Vector2.Distance(bkg.GetComponent<Rigidbody2D>().position, lastSpawnPosition) >= enemySpawnInterval)
+                    {
+                        spawnNewEnemy();
+                    }
+                    // Bubble spawn timer
+                    bubbleTimer += Time.deltaTime;
+                    if (bubbleTimer >= bubbleSpawnInterval)
+                    {
+                        spawnAirBubble();
+                        bubbleTimer = 0f;
+                    }
                 }
             }
+            else if (!ui.IsGameOver && currentY < -130 && currentY >= -135.5)
+            {
+                playerWins = true;
+                bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed);
+            }
         }
-        else if (!ui.IsGameOver && currentY < -130 && currentY >= -135.5)
-        {
-            playerWins = true;
-            bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed);
-        }
-
-        
     }
 
     //trigger the slowdown effect for 1 second
