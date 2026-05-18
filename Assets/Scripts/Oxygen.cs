@@ -30,7 +30,9 @@ public class Oxygen : MonoBehaviour
     public void ShakeMask(float duration = 0.2f, float magnitude = 10f)
     {
         if (mask != null)
+        {
             StartCoroutine(ShakeMaskCoroutine(duration, magnitude));
+        }
     }
 
     private IEnumerator ShakeMaskCoroutine(float duration, float magnitude)

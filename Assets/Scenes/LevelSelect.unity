@@ -1886,7 +1886,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 647086613}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: LoadLevel
+        m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2890,10 +2890,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level2
       objectReference: {fileID: 0}
-    - target: {fileID: 1985670014121247413, guid: d13d477191dd230488f06a3ea1b19909, type: 3}
-      propertyPath: m_text
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3302014750031024341, guid: d13d477191dd230488f06a3ea1b19909, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2975,21 +2971,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6555326635753271948, guid: d13d477191dd230488f06a3ea1b19909, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6555326635753271948, guid: d13d477191dd230488f06a3ea1b19909, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 647086613}
-    - target: {fileID: 6555326635753271948, guid: d13d477191dd230488f06a3ea1b19909, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 6555326635753271948, guid: d13d477191dd230488f06a3ea1b19909, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: L2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3011,6 +2995,10 @@ PrefabInstance:
     - target: {fileID: 123961821701287988, guid: d13d477191dd230488f06a3ea1b19909, type: 3}
       propertyPath: m_Name
       value: Level1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1985670014121247413, guid: d13d477191dd230488f06a3ea1b19909, type: 3}
+      propertyPath: m_text
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3302014750031024341, guid: d13d477191dd230488f06a3ea1b19909, type: 3}
       propertyPath: m_Pivot.x

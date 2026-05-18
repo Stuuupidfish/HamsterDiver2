@@ -45,7 +45,9 @@ public class Player : MonoBehaviour
             {
                 oxygen -= drainRate * Time.deltaTime;
                 if (oxygen < 0)
+                {
                     oxygen = 0;
+                }
             }
         }
         if (oxygen > 100)

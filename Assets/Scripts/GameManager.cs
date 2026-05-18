@@ -114,19 +114,19 @@ public class GameManager : MonoBehaviour
         GameObject bubble = Instantiate(airBubble, new Vector2(UnityEngine.Random.Range(-2,3),6), Quaternion.identity);
     }
 
-    public void Restart()
-    {
-        StartCoroutine(RestartAfterSound());
-    }
-
-    public IEnumerator RestartAfterSound()
-    {
-        audioSource.PlayOneShot(click);
-        if (click != null)
-            yield return new WaitForSeconds(click.length);
-        else
-            yield return null;
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name);
-    }
+    //NO LONGER USED-- generalized to LoadScene in MenuManager
+    // public void Restart()
+    // {
+    //     StartCoroutine(RestartAfterSound());
+    // }
+    // public IEnumerator RestartAfterSound()
+    // {
+    //     audioSource.PlayOneShot(click);
+    //     if (click != null)
+    //         yield return new WaitForSeconds(click.length);
+    //     else
+    //         yield return null;
+    //     Scene currentScene = SceneManager.GetActiveScene();
+    //     SceneManager.LoadScene(currentScene.name);
+    // }
 }

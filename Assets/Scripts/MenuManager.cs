@@ -20,33 +20,45 @@ public class MenuManager : MonoBehaviour
         
     }
 
-    public void LoadLevel(string levelName)
+    public void LoadScene(string levelName)
     {
-        StartCoroutine(LoadLevelCoroutine(levelName));
+        StartCoroutine(LoadSceneCoroutine(levelName));
     }
-    private IEnumerator LoadLevelCoroutine(string levelName)
+    private IEnumerator LoadSceneCoroutine(string sceneName)
     {
         audioSource.PlayOneShot(click);
         if (click != null)
-            yield return new WaitForSeconds(click.length);
+        {
+            yield return new WaitForSecondsRealtime(click.length);
+        }
         else
+        {
             yield return null;
-        SceneManager.LoadScene(levelName);
+        }
+        if (string.IsNullOrEmpty(sceneName))
+        {
+            sceneName = SceneManager.GetActiveScene().name;
+        }
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(sceneName);
     }
 
-    public void LoadGame()
+    //loads the original game scene from the game jam
+    public void LoadGame() //this will eventually be an outdated method 
     {
         StartCoroutine(LoadGameCoroutine());
     }
-
-    
     private IEnumerator LoadGameCoroutine()
     {
         audioSource.PlayOneShot(click);
         if (click != null)
+        {
             yield return new WaitForSeconds(click.length);
+        }
         else
+        {
             yield return null;
+        }
         SceneManager.LoadScene("MainScene");
     }
     public void ShowInstruct()
@@ -63,9 +75,13 @@ public class MenuManager : MonoBehaviour
     {
         audioSource.PlayOneShot(click);
         if (click != null)
+        {
             yield return new WaitForSeconds(click.length);
+        }
         else
+        {
             yield return null;
+        }
         
     }
 }
