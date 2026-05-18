@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ButtonAnimator : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler, IPointerEnterHandler
+public class ObjectAnimator : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler, IPointerEnterHandler
 {
-    [SerializeField] private GameObject button;
+    [SerializeField] private GameObject obj;
 
     [Header("Float Motion")]
     [SerializeField] private float bobAmplitude = 2f;
@@ -29,7 +29,7 @@ public class ButtonAnimator : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
     private void Awake()
     {
-        Transform target = button != null ? button.transform : transform;
+        Transform target = obj != null ? obj.transform : transform;
         rectTransform = target as RectTransform;
         startScale = target.localScale;
         seedX = Random.Range(0f, 100f);
@@ -57,7 +57,7 @@ public class ButtonAnimator : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
     private void Update()
     {
-        Transform target = button != null ? button.transform : transform;
+        Transform target = obj != null ? obj.transform : transform;
 
         if (rectTransform != null)
         {

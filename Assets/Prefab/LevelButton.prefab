@@ -143,17 +143,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 123961821701287988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0358b254c94863341abe13db2cc383eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e4e77112d27fc94d84e53fc3cd179e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 123961821701287988}
-  bobAmplitude: 4
+  obj: {fileID: 0}
+  bobAmplitude: 2
   bobSpeed: 1.2
-  driftAmplitude: 2
+  driftAmplitude: 1
   driftSpeed: 0.8
-  rotationAmplitude: 1.5
+  rotationAmplitude: 1
   rotationSpeed: 0.9
   pressedScale: 0.92
+  hoveredScale: 1.1
   scaleLerpSpeed: 12
 --- !u!1 &7250273760319661068
 GameObject:

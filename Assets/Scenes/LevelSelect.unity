@@ -432,10 +432,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 415872182}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0358b254c94863341abe13db2cc383eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e4e77112d27fc94d84e53fc3cd179e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 415872182}
+  obj: {fileID: 0}
   bobAmplitude: 2
   bobSpeed: 1.2
   driftAmplitude: 1
@@ -1286,10 +1286,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1046040872}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0358b254c94863341abe13db2cc383eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e4e77112d27fc94d84e53fc3cd179e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 1046040872}
+  obj: {fileID: 0}
   bobAmplitude: 2
   bobSpeed: 1.2
   driftAmplitude: 1
@@ -1703,9 +1703,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6555326635753271948, guid: d13d477191dd230488f06a3ea1b19909, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6555326635753271948, guid: d13d477191dd230488f06a3ea1b19909, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 647086613}
+    - target: {fileID: 6555326635753271948, guid: d13d477191dd230488f06a3ea1b19909, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadGame
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1935,15 +1943,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1242925589}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0358b254c94863341abe13db2cc383eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e4e77112d27fc94d84e53fc3cd179e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 1242925589}
-  bobAmplitude: 4
+  obj: {fileID: 0}
+  bobAmplitude: 2
   bobSpeed: 1.2
-  driftAmplitude: 2
+  driftAmplitude: 1
   driftSpeed: 0.8
-  rotationAmplitude: 1.5
+  rotationAmplitude: 1
   rotationSpeed: 0.9
   pressedScale: 0.92
   hoveredScale: 1.1
@@ -1964,7 +1972,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1252597029
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1977,7 +1985,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f5c96b26194299e419dabb4157bda678, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2219,15 +2227,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1401762006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0358b254c94863341abe13db2cc383eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e4e77112d27fc94d84e53fc3cd179e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 1401762006}
-  bobAmplitude: 4
+  obj: {fileID: 1401762006}
+  bobAmplitude: 2
   bobSpeed: 1.2
-  driftAmplitude: 2
+  driftAmplitude: 1
   driftSpeed: 0.8
-  rotationAmplitude: 1.5
+  rotationAmplitude: 1
   rotationSpeed: 0.9
   pressedScale: 0.92
   hoveredScale: 1.1

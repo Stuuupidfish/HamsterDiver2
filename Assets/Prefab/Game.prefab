@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 4347214597722754613}
   - component: {fileID: 3528357933563962438}
   - component: {fileID: 2993956392919138712}
+  - component: {fileID: 3048986608508649525}
   m_Layer: 5
   m_Name: YouWin
   m_TagString: Untagged
@@ -72,7 +73,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 70}
+  m_AnchoredPosition: {x: 0, y: 80}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3528357933563962438
@@ -105,8 +106,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: YOU WIN!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d0b52e8f717f6f40911aa6a1f8f1cde, type: 2}
+  m_sharedMaterial: {fileID: -3266957739845052083, guid: 4d0b52e8f717f6f40911aa6a1f8f1cde, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -172,6 +173,28 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3048986608508649525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012079529701295935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e4e77112d27fc94d84e53fc3cd179e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: {fileID: 0}
+  bobAmplitude: 3
+  bobSpeed: 1.2
+  driftAmplitude: 0
+  driftSpeed: 0
+  rotationAmplitude: 0
+  rotationSpeed: 0
+  pressedScale: 0.8
+  hoveredScale: 1
+  scaleLerpSpeed: 0
 --- !u!1 &1631127708628141469
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,10 +406,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1931877979728908117}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0358b254c94863341abe13db2cc383eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e4e77112d27fc94d84e53fc3cd179e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 1931877979728908117}
+  obj: {fileID: 0}
   bobAmplitude: 2
   bobSpeed: 1.2
   driftAmplitude: 1
@@ -710,6 +733,7 @@ GameObject:
   - component: {fileID: 4628042563933030660}
   - component: {fileID: 6567264099690675992}
   - component: {fileID: 8104153561967402585}
+  - component: {fileID: 6052218024797373872}
   m_Layer: 5
   m_Name: GameOver
   m_TagString: Untagged
@@ -733,7 +757,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 70}
+  m_AnchoredPosition: {x: 0, y: 80}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6567264099690675992
@@ -766,8 +790,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: GAME OVER
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d0b52e8f717f6f40911aa6a1f8f1cde, type: 2}
+  m_sharedMaterial: {fileID: -3266957739845052083, guid: 4d0b52e8f717f6f40911aa6a1f8f1cde, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -833,6 +857,28 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6052218024797373872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2503908775832505296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e4e77112d27fc94d84e53fc3cd179e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: {fileID: 0}
+  bobAmplitude: 3
+  bobSpeed: 1.2
+  driftAmplitude: 0
+  driftSpeed: 0
+  rotationAmplitude: 0
+  rotationSpeed: 0
+  pressedScale: 0.8
+  hoveredScale: 1
+  scaleLerpSpeed: 0
 --- !u!1 &2749001143952452663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,6 +1438,7 @@ GameObject:
   - component: {fileID: 4516006237260003158}
   - component: {fileID: 5881659237273892426}
   - component: {fileID: 2987358680833971867}
+  - component: {fileID: 3814446477530926311}
   m_Layer: 5
   m_Name: Paused
   m_TagString: Untagged
@@ -1415,7 +1462,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 25}
+  m_AnchoredPosition: {x: 0, y: 35}
   m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5881659237273892426
@@ -1448,8 +1495,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PAUSED
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d0b52e8f717f6f40911aa6a1f8f1cde, type: 2}
+  m_sharedMaterial: {fileID: -3266957739845052083, guid: 4d0b52e8f717f6f40911aa6a1f8f1cde, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1515,6 +1562,28 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3814446477530926311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4036313544786388614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e4e77112d27fc94d84e53fc3cd179e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: {fileID: 0}
+  bobAmplitude: 3
+  bobSpeed: 1.2
+  driftAmplitude: 0
+  driftSpeed: 0
+  rotationAmplitude: 0
+  rotationSpeed: 0
+  pressedScale: 0.8
+  hoveredScale: 1
+  scaleLerpSpeed: 0
 --- !u!1 &5221898773469108462
 GameObject:
   m_ObjectHideFlags: 0
@@ -1948,10 +2017,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6769968334570009293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0358b254c94863341abe13db2cc383eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e4e77112d27fc94d84e53fc3cd179e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 6769968334570009293}
+  obj: {fileID: 0}
   bobAmplitude: 2
   bobSpeed: 1.2
   driftAmplitude: 1
@@ -2248,10 +2317,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6981966175675049283}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0358b254c94863341abe13db2cc383eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e4e77112d27fc94d84e53fc3cd179e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 6981966175675049283}
+  obj: {fileID: 0}
   bobAmplitude: 2
   bobSpeed: 1.2
   driftAmplitude: 1
