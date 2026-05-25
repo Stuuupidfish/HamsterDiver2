@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     }
     [SerializeField] private GameObject airBubble;
     [SerializeField] private GameObject bkg;
+    [SerializeField] private float winY; //the y value that the player needs to reach to win, IS A NEGATIVE VALUE
+    //***this is how u find win Y: find where the top of the bkg meets the top of the camera and then subtract 5.5 from the y
     private Vector2 lastSpawnPosition;
     [SerializeField] private float defaultSpeed = 0.1f; //0.1f is the original speed, but will be changed for additinal levels so ill treat it as like the basis
     private float downSpeed;
@@ -64,10 +66,10 @@ public class GameManager : MonoBehaviour
             }
             //downSpeed = damageSlowDown ? 0.05f : 0.1f;
             float currentY = bkg.GetComponent<Rigidbody2D>().position.y;
-            if (!ui.IsGameOver && currentY >= -130)
+            if (!ui.IsGameOver && currentY >= winY)
             {
                 bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed);
-                if (currentY > -115) //to prevent spawning enemies at the surface
+                if (currentY > winY + 15) //to prevent spawning enemies at the surface
                 {
                     if (Vector2.Distance(bkg.GetComponent<Rigidbody2D>().position, lastSpawnPosition) >= enemySpawnInterval)
                     {
@@ -82,7 +84,7 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-            else if (!ui.IsGameOver && currentY < -130 && currentY >= -135.5)
+            else if (!ui.IsGameOver && currentY < winY && currentY >= winY - 5.5)
             {
                 playerWins = true;
                 bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed);
