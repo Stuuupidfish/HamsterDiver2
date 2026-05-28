@@ -7,6 +7,7 @@ public class EndlessUI : MonoBehaviour
     public bool IsGameOver = false;
     // Start is called before the first frame update
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI distanceText;
     private EndlessPlayer player;
     private EndlessGameManager endlessGameManager;
     [SerializeField] private GameObject gameOver; //text
@@ -29,6 +30,7 @@ public class EndlessUI : MonoBehaviour
         endlessGameManager = FindObjectOfType<EndlessGameManager>();
         player = FindObjectOfType<EndlessPlayer>();
         scoreText.text = "Oxygen level: 100%";
+        distanceText.text = "Distance: 0m";
         gameOver.SetActive(false);
     }
 
@@ -49,6 +51,7 @@ public class EndlessUI : MonoBehaviour
             }
         }
         scoreText.text = "Oxygen level: " + player.Oxygen + "%";
+        distanceText.text = "Distance: " + endlessGameManager.TotalDistanceTraveled + "m";
         if (player.Oxygen == 0)
         {
             GameOver();

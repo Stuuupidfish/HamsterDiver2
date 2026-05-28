@@ -18,8 +18,13 @@ public class EndlessGameManager : MonoBehaviour
     // 4 : shark (-25)
     private int enemySelectionRange = 2; //start off by spwaning first 2
     private float totalDistanceTraveled = 0f;
-
-
+    public float TotalDistanceTraveled
+    {
+        get {
+            float scaled = totalDistanceTraveled * 10f; // scale to desired units
+            return Mathf.Round(scaled * 100f) / 100f;    // round to hundredths (2 decimal places)
+        }
+    }
     private int[] spawnX = {-6,6};
     private bool damageSlowDown = false;
     public bool DamageSlowDown
@@ -77,14 +82,31 @@ public class EndlessGameManager : MonoBehaviour
             {
                 downSpeed = prevSpeed;
             }
-            //downSpeed = damageSlowDown ? 0.05f : 0.1f;
+
+            if (totalDistanceTraveled < 3f)
+            {
+                enemySelectionRange = 2;
+            }
+            else if (totalDistanceTraveled < 9f)
+            {
+                enemySelectionRange = 3; 
+            }
+            else if (totalDistanceTraveled < 16f)
+            {
+                enemySelectionRange = 4; 
+            }
+            else
+            {
+                enemySelectionRange = 5; 
+            }
+
             float currentY = bkg.GetComponent<Rigidbody2D>().position.y;
             if (!ui.IsGameOver)
             {
                 bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed);
                 downSpeed = Mathf.Min(downSpeed + accelerationRate * Time.deltaTime, maxSpeed);
                 bubbleSpawnInterval = Mathf.Max(bubbleSpawnInterval - 0.007f * Time.deltaTime, maxBubbleSpawnInterval);
-                enemySpawnInterval = Mathf.Max(enemySpawnInterval - 0.01f * Time.deltaTime, maxEnemySpawnInterval);
+                enemySpawnInterval = Mathf.Max(enemySpawnInterval - 0.05f * Time.deltaTime, maxEnemySpawnInterval);
                 if (!damageSlowDown)
                     prevSpeed = downSpeed;
                 Debug.Log("Current down speed: " + downSpeed);
