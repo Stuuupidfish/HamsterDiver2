@@ -14,7 +14,7 @@ public class EndlessUI : MonoBehaviour
     [SerializeField] private GameObject youWin; //text
     [SerializeField] private GameObject paused; //text
     [SerializeField] private GameObject menu;
-
+    // [SerializeField] private GameObject star;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip win;
 

@@ -73,8 +73,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 80}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 120}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3528357933563962438
 CanvasRenderer:
@@ -1118,8 +1118,11 @@ MonoBehaviour:
   scoreText: {fileID: 213154185078339520}
   gameOver: {fileID: 2503908775832505296}
   youWin: {fileID: 1012079529701295935}
+  canvas: {fileID: 3334061720739947993}
   paused: {fileID: 4036313544786388614}
   menu: {fileID: 8206022737089474234}
+  fullStar: {fileID: 468322303419518380, guid: 4f07f6c22ce351b4ebb24d102ce6c445, type: 3}
+  emptyStar: {fileID: 2773978429085646030, guid: bd9085cb699b5a641aee8b411889b6d2, type: 3}
   audioSource: {fileID: 5288936985988051125}
   win: {fileID: 8300000, guid: 30e2e4cd09f1a6941af7a4c1af9a8756, type: 3}
 --- !u!82 &5288936985988051125
@@ -2591,7 +2594,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 125, y: 200}
+  m_AnchoredPosition: {x: 125, y: 190}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8583917011293137586
