@@ -3778,18 +3778,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
+  - {fileID: 4465650884401953203, guid: 4a563c556c0654b4c8e37628685b1fbf, type: 3}
+  - {fileID: 7014720716596499659, guid: a361ac7ff394ee34c8f5ba91c461f986, type: 3}
   - {fileID: 1651134792844695656, guid: 46d0fbb47f2fa5148b82dcd1e3c67f62, type: 3}
   - {fileID: 7332960521063776414, guid: d430fb198fdac42458f4c6900fd38730, type: 3}
-  - {fileID: 4465650884401953203, guid: 4a563c556c0654b4c8e37628685b1fbf, type: 3}
   - {fileID: 7080397065140519097, guid: bad03100fc5fc454ba61f1bb0d941d79, type: 3}
-  - {fileID: 7014720716596499659, guid: a361ac7ff394ee34c8f5ba91c461f986, type: 3}
   airBubble: {fileID: 1211514933668689413, guid: 4c6d4c46f4c453a47a59e1a6c30fc4ef, type: 3}
   bkg: {fileID: 1216382389467318925}
-  defaultSpeed: 0.2
   audioSource: {fileID: 6613147578588227387}
   click: {fileID: 8300000, guid: df97dcaab30c5f64e9db32ca6ebc780c, type: 3}
-  bubbleSpawnInterval: 0.5
-  enemySpawnInterval: 10
+  bubbleSpawnInterval: 1.2
+  enemySpawnInterval: 50
 --- !u!4 &9035569562964318354 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3271733310854839771, guid: 46d0fbb47f2fa5148b82dcd1e3c67f62, type: 3}
