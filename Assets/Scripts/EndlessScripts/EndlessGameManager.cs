@@ -7,8 +7,19 @@ using UnityEngine.SceneManagement;
 public class EndlessGameManager : MonoBehaviour
 {
     private float bubbleTimer = 0f;
+
+
     [SerializeField] private GameObject[] enemies = new GameObject[5];
-    //private Player player;
+    // ORDER OF ENEMIES IN THE ARRAY:
+    // 0 : school of fish (-1)
+    // 1 : jellyfish (-15)
+    // 2 : octopus (-5)
+    // 3 : pufferfish (-10)
+    // 4 : shark (-25)
+    private int enemySelectionRange = 2; //start off by spwaning first 2
+    private float totalDistanceTraveled = 0f;
+
+
     private int[] spawnX = {-6,6};
     private bool damageSlowDown = false;
     public bool DamageSlowDown
@@ -18,8 +29,11 @@ public class EndlessGameManager : MonoBehaviour
     [SerializeField] private GameObject airBubble;
     [SerializeField] private GameObject bkg;
     private Vector2 lastSpawnPosition;
-    [SerializeField] private float defaultSpeed = 0.1f; //0.1f is the original speed, but will be changed for additinal levels so ill treat it as like the basis
+    private float defaultSpeed = 0.06f; //0.1f is the original speed, but will be changed for additinal levels so ill treat it as like the basis
+    
+    private float accelerationRate = 0.0005f; //the rate at which the game speeds up, the game will speed up by this amount every frame
     private float downSpeed;
+    private float maxSpeed = 0.2f; //the max speed the game can reach
     public float DownSpeed
     {
         get {return downSpeed;}
@@ -37,16 +51,17 @@ public class EndlessGameManager : MonoBehaviour
 
 
     [SerializeField] private float bubbleSpawnInterval = 1.5f;
+    private float maxBubbleSpawnInterval = 0.5f; 
     [SerializeField] private float enemySpawnInterval = 5.5f;
-
-
-
+    private float maxEnemySpawnInterval = 5f; //the minimum time between enemy spawns, the game will never spawn enemies faster than this
+    private float prevSpeed;
     // Start is called before the first frame update
     void Start()
     {
         ui = FindObjectOfType<EndlessUI>();
         spawnNewEnemy();
         downSpeed = defaultSpeed;
+        prevSpeed = downSpeed;
     }
 
     // Update is called once per frame
@@ -56,17 +71,24 @@ public class EndlessGameManager : MonoBehaviour
         {
             if (damageSlowDown)
             {
-                downSpeed = 0.5f*defaultSpeed;
+                downSpeed = 0.5f*prevSpeed;
             }
             else
             {
-                downSpeed = defaultSpeed;
+                downSpeed = prevSpeed;
             }
             //downSpeed = damageSlowDown ? 0.05f : 0.1f;
             float currentY = bkg.GetComponent<Rigidbody2D>().position.y;
             if (!ui.IsGameOver)
             {
                 bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed);
+                downSpeed = Mathf.Min(downSpeed + accelerationRate * Time.deltaTime, maxSpeed);
+                bubbleSpawnInterval = Mathf.Max(bubbleSpawnInterval - 0.007f * Time.deltaTime, maxBubbleSpawnInterval);
+                enemySpawnInterval = Mathf.Max(enemySpawnInterval - 0.01f * Time.deltaTime, maxEnemySpawnInterval);
+                if (!damageSlowDown)
+                    prevSpeed = downSpeed;
+                Debug.Log("Current down speed: " + downSpeed);
+                totalDistanceTraveled += downSpeed * Time.deltaTime;
                 if (Vector2.Distance(bkg.GetComponent<Rigidbody2D>().position, lastSpawnPosition) >= enemySpawnInterval)
                 {
                     spawnNewEnemy();
@@ -102,7 +124,7 @@ public class EndlessGameManager : MonoBehaviour
 
     private void spawnNewEnemy()
     {
-        GameObject newObject = Instantiate(enemies[UnityEngine.Random.Range(0, enemies.Length)], new Vector2(UnityEngine.Random.Range(-5,6), 6), Quaternion.identity);
+        GameObject newObject = Instantiate(enemies[UnityEngine.Random.Range(0, enemySelectionRange)], new Vector2(UnityEngine.Random.Range(-5,6), 6), Quaternion.identity);
         lastSpawnPosition = bkg.GetComponent<Rigidbody2D>().position;
     }
 
