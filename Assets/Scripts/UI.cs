@@ -13,6 +13,7 @@ public class UI : MonoBehaviour
     [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject paused; //text
     [SerializeField] private GameObject menu;
+    [SerializeField] private GameObject nextLvlButton;
     [SerializeField] private GameObject fullStar;
     [SerializeField] private GameObject emptyStar;
     [SerializeField] private AudioSource audioSource;
@@ -66,6 +67,7 @@ public class UI : MonoBehaviour
         gameOver.SetActive(true);
         IsGameOver = true;
         menu.SetActive(true);
+        nextLvlButton.SetActive(false);
     }
     public void Win()
     {
@@ -76,6 +78,10 @@ public class UI : MonoBehaviour
     {
         youWin.SetActive(true);
         menu.SetActive(true);
+        if (nextLvlButton != null)
+        {
+            nextLvlButton.SetActive(true);
+        }
         audioSource.PlayOneShot(win);
 
         yield return new WaitForSecondsRealtime(1f);
@@ -133,6 +139,7 @@ public class UI : MonoBehaviour
         Time.timeScale = 0f;
         paused.SetActive(true);
         menu.SetActive(true);
+        nextLvlButton.SetActive(false);
     }
     public void Resume()
     {
