@@ -26,6 +26,10 @@ public class ObjectAnimator : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     private float seedRotation;
     private bool isPressed;
     private bool isHovered;
+    public bool IsHovered
+    {
+        get { return isHovered; }
+    }
 
     private void Awake()
     {
