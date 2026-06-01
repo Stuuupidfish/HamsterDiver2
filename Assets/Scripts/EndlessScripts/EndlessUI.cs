@@ -16,14 +16,14 @@ public class EndlessUI : MonoBehaviour
     [SerializeField] private GameObject menu;
     // [SerializeField] private GameObject star;
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip win;
+    [SerializeField] private AudioClip endGame;
 
     private bool isPaused = false;
     public bool IsPaused
     {
         get { return isPaused; }
     }
-    private bool hasWinBeenTriggered = false;
+    //private bool hasWinBeenTriggered = false;
     
     void Start()
     {
@@ -52,29 +52,31 @@ public class EndlessUI : MonoBehaviour
         }
         scoreText.text = "Oxygen level: " + player.Oxygen + "%";
         distanceText.text = "Distance: " + endlessGameManager.TotalDistanceTraveled + "m";
-        if (player.Oxygen == 0)
+        if (player.Oxygen == 0 && !IsGameOver)
         {
             GameOver();
         }
         
-        if (endlessGameManager.PlayerWins && !hasWinBeenTriggered)
-        {
-            Win();
-            hasWinBeenTriggered = true;
-        }
+        // if (endlessGameManager.PlayerWins && !hasWinBeenTriggered)
+        // {
+        //     Win();
+        //     hasWinBeenTriggered = true;
+        // }
     }
     public void GameOver()
     {
         gameOver.SetActive(true);
         IsGameOver = true;
         menu.SetActive(true);
+        if (audioSource != null && endGame != null)
+            audioSource.PlayOneShot(endGame);
     }
-    public void Win()
-    {
-        audioSource.PlayOneShot(win);
-        youWin.SetActive(true);
-        menu.SetActive(true);
-    }
+    // public void Win()
+    // {
+    //     audioSource.PlayOneShot(win);
+    //     youWin.SetActive(true);
+    //     menu.SetActive(true);
+    // }
     public void Pause()
     {
         Time.timeScale = 0f;

@@ -52,7 +52,6 @@ public class EndlessGameManager : MonoBehaviour
     }
 
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip click;
 
 
     [SerializeField] private float bubbleSpawnInterval = 1.5f;
@@ -67,6 +66,8 @@ public class EndlessGameManager : MonoBehaviour
         spawnNewEnemy();
         downSpeed = defaultSpeed;
         prevSpeed = downSpeed;
+
+        // audioSource volume handling removed
     }
 
     // Update is called once per frame
@@ -154,4 +155,6 @@ public class EndlessGameManager : MonoBehaviour
     {
         GameObject bubble = Instantiate(airBubble, new Vector2(UnityEngine.Random.Range(-2,3),6), Quaternion.identity);
     }
+
+    // music fade methods removed
 }
