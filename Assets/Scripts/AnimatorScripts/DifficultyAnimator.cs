@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class DifficultyAnimator : MonoBehaviour
 {
     [SerializeField] private GameObject[] difficultyObjs = new GameObject[5];
-
     [Header("Wave Motion")]
     [SerializeField, Min(0f)] private float jumpHeight = 18f;
     [SerializeField, Min(0.01f)] private float waveSpeed = 3f;
@@ -186,5 +185,40 @@ public class DifficultyAnimator : MonoBehaviour
         }
 
         return 1f;
+    }
+
+    private void OnDisable()
+    {
+        ResetStarsToStartingPositions();
+    }
+    // Resets each star to its cached starting position (local or anchored).
+    public void ResetStarsToStartingPositions()
+    {
+        if (starTransforms == null || starTransforms.Length == 0)
+        {
+            CacheStars();
+        }
+
+        if (starTransforms == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < starTransforms.Length; i++)
+        {
+            Transform t = starTransforms[i];
+            if (t == null)
+                continue;
+
+            RectTransform rect = starRects != null ? starRects[i] : null;
+            if (rect != null)
+            {
+                rect.anchoredPosition = baseAnchoredPositions[i];
+            }
+            else
+            {
+                t.localPosition = baseLocalPositions[i];
+            }
+        }
     }
 }
