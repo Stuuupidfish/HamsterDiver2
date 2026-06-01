@@ -4058,7 +4058,6 @@ MonoBehaviour:
   airBubble: {fileID: 1211514933668689413, guid: 4c6d4c46f4c453a47a59e1a6c30fc4ef, type: 3}
   bkg: {fileID: 1216382389467318925}
   audioSource: {fileID: 6613147578588227387}
-  click: {fileID: 8300000, guid: df97dcaab30c5f64e9db32ca6ebc780c, type: 3}
   bubbleSpawnInterval: 1.8
   enemySpawnInterval: 20
 --- !u!4 &9035569562964318354 stripped
@@ -4252,6 +4251,7 @@ MonoBehaviour:
   IsGameOver: 0
   scoreText: {fileID: 3761167824377827706}
   distanceText: {fileID: 412147915}
+  highScoreText: {fileID: 1694093515}
   gameOver: {fileID: 1475130554699148650}
   youWin: {fileID: 4092853244279808389}
   paused: {fileID: 1064188064190365756}

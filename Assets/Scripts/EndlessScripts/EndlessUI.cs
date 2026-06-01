@@ -8,6 +8,7 @@ public class EndlessUI : MonoBehaviour
     // Start is called before the first frame update
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI distanceText;
+    public TextMeshProUGUI highScoreText;
     private EndlessPlayer player;
     private EndlessGameManager endlessGameManager;
     [SerializeField] private GameObject gameOver; //text
@@ -68,6 +69,9 @@ public class EndlessUI : MonoBehaviour
         gameOver.SetActive(true);
         IsGameOver = true;
         menu.SetActive(true);
+        float distanceTraveled = endlessGameManager.TotalDistanceTraveled;
+        PlayerData.SetEndlessHighScore(distanceTraveled);
+        highScoreText.text = "Your Score: " + distanceTraveled + "m\nHigh Score: " + PlayerData.EndlessHighScore + "m";
         if (audioSource != null && endGame != null)
             audioSource.PlayOneShot(endGame);
     }
