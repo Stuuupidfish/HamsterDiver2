@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip click;
 
 
     [SerializeField] private float bubbleSpawnInterval = 1.5f;
@@ -87,7 +86,13 @@ public class GameManager : MonoBehaviour
             else if (!ui.IsGameOver && currentY < winY && currentY >= winY - 5.5)
             {
                 playerWins = true;
+                audioSource.Stop();
                 bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed);
+            }
+            
+            if (ui.IsGameOver)
+            {
+                audioSource.Stop();
             }
         }
     }
@@ -115,20 +120,4 @@ public class GameManager : MonoBehaviour
     {
         GameObject bubble = Instantiate(airBubble, new Vector2(UnityEngine.Random.Range(-2,3),6), Quaternion.identity);
     }
-
-    //NO LONGER USED-- generalized to LoadScene in MenuManager
-    // public void Restart()
-    // {
-    //     StartCoroutine(RestartAfterSound());
-    // }
-    // public IEnumerator RestartAfterSound()
-    // {
-    //     audioSource.PlayOneShot(click);
-    //     if (click != null)
-    //         yield return new WaitForSeconds(click.length);
-    //     else
-    //         yield return null;
-    //     Scene currentScene = SceneManager.GetActiveScene();
-    //     SceneManager.LoadScene(currentScene.name);
-    // }
 }

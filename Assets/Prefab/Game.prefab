@@ -1126,6 +1126,7 @@ MonoBehaviour:
   emptyStar: {fileID: 2773978429085646030, guid: bd9085cb699b5a641aee8b411889b6d2, type: 3}
   audioSource: {fileID: 5288936985988051125}
   win: {fileID: 8300000, guid: 30e2e4cd09f1a6941af7a4c1af9a8756, type: 3}
+  lose: {fileID: 8300000, guid: 04ced0359d0e2b645987982953485a01, type: 3}
 --- !u!82 &5288936985988051125
 AudioSource:
   m_ObjectHideFlags: 0

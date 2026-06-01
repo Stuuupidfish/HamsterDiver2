@@ -18,6 +18,7 @@ public class UI : MonoBehaviour
     [SerializeField] private GameObject emptyStar;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip win;
+    [SerializeField] private AudioClip lose;
 
     private bool isPaused = false;
     public bool IsPaused
@@ -51,7 +52,7 @@ public class UI : MonoBehaviour
             }
         }
         scoreText.text = "Oxygen level: " + player.Oxygen + "%";
-        if (player.Oxygen == 0)
+        if (player.Oxygen == 0 && !IsGameOver)
         {
             GameOver();
         }
@@ -68,6 +69,7 @@ public class UI : MonoBehaviour
         IsGameOver = true;
         menu.SetActive(true);
         nextLvlButton.SetActive(false);
+        audioSource.PlayOneShot(lose);
     }
     public void Win()
     {
