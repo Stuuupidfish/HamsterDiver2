@@ -124,11 +124,11 @@ public class EndlessGameManager : MonoBehaviour
                     bubbleTimer = 0f;
                 }
             }
-            // else if (!ui.IsGameOver && currentY < -130 && currentY >= -135.5)
-            // {
-            //     playerWins = true;
-            //     bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed);
-            // }
+            
+            if (ui.IsGameOver)
+            {
+                audioSource.Stop();
+            }
         }
     }
 

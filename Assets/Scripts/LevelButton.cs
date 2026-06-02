@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using TMPro;
 
-public class LevelButton : MonoBehaviour
+public class LevelButton : MonoBehaviour, IPointerDownHandler
 {
+    private static readonly Color LockedButtonColor = new Color32(190, 190, 190, 255);
+    private static readonly Color LockedTextColor = new Color32(200, 200, 200, 255);
+    private static readonly Color UnlockedColor = Color.white;
+
     [SerializeField] private int levelIndex = 0;
     [SerializeField] private string sceneName;
     //THIS WILL REFACTOR SCENE CHANGES SO THAT MEANS MENUMANAGER BUTTON SCRIPTS MUST BE DETACHED
-    [SerializeField] private GameObject [] scoreStars = new GameObject[3];
-    [SerializeField] private Sprite emptyStarSprite;
-    [SerializeField] private Sprite fullStarSprite;
+    [SerializeField] private bool[] scoreStars = new bool[3];
+    [SerializeField] private GameObject emptyStarPrefab;
+    [SerializeField] private GameObject fullStarPrefab;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip click;
     [SerializeField] private AudioClip denyClip;
     private Button button;
     // Start is called before the first frame update
@@ -38,70 +45,81 @@ public class LevelButton : MonoBehaviour
             button.interactable = true;
         }
 
-        // overlay handled in inspector (if present)
-
-        foreach (GameObject star in scoreStars)
+        Image buttonImage = GetComponent<Image>();
+        if (buttonImage != null)
         {
-            star.SetActive(false);
+            buttonImage.color = unlocked ? UnlockedColor : LockedButtonColor;
         }
 
-        updateScoreStars(score);
+        TMP_Text buttonLabel = GetComponentInChildren<TMP_Text>(true);
+        if (buttonLabel != null)
+        {
+            buttonLabel.color = unlocked ? UnlockedColor : LockedTextColor;
+        }
+
+        SetScoreStars(score);
     }
 
-    public void updateScoreStars(int score)
+    public void SetScoreStars(int score)
     {
-        for (int i = 0; i < score; i++)
+        for (int i = 0; i < scoreStars.Length; i++)
         {
-            SetSpriteOnGameObject(scoreStars[i], fullStarSprite);
+            scoreStars[i] = i < score;
         }
-        for (int i = score; i < scoreStars.Length; i++)
-        {
-            SetSpriteOnGameObject(scoreStars[i], emptyStarSprite);
-        }
+    }
+
+    public bool[] GetScoreStars()
+    {
+        return scoreStars;
+    }
+
+    public GameObject GetStarPrefab(bool isFullStar)
+    {
+        return isFullStar ? fullStarPrefab : emptyStarPrefab;
     }
 
     public void SelectLevel()
     {
         if (!PlayerData.IsLevelUnlocked(levelIndex))
         {
-            PlayDenySound();
             return;
         }
 
         if (!string.IsNullOrEmpty(sceneName))
         {
-            SceneManager.LoadScene(sceneName);
+            StartCoroutine(LoadSceneCoroutine(sceneName));
         }
+    }
+
+    private IEnumerator LoadSceneCoroutine(string targetSceneName)
+    {
+        if (audioSource != null && click != null)
+        {
+            audioSource.PlayOneShot(click);
+            yield return new WaitForSecondsRealtime(click.length);
+        }
+        else
+        {
+            yield return null;
+        }
+
+        SceneManager.LoadScene(targetSceneName);
     }
 
     private void PlayDenySound()
     {
-        if (audioSource == null || denyClip == null)
-        {
-            return;
-        }
-
         audioSource.PlayOneShot(denyClip);
+        Debug.Log("sound");
     }
 
-    private void SetSpriteOnGameObject(GameObject go, Sprite sprite)
+    public void OnPointerDown(PointerEventData eventData)
     {
-        if (go == null || sprite == null) return;
-
-        // Try UI Image first
-        Image img = go.GetComponent<Image>();
-        if (img != null)
+        if (PlayerData.IsLevelUnlocked(levelIndex))
         {
-            img.sprite = sprite;
             return;
         }
-
-        // Fall back to SpriteRenderer
-        SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
-        if (sr != null)
-        {
-            sr.sprite = sprite;
-            return;
-        }
+        Debug.Log("clicked");
+        PlayDenySound();
     }
+
 }

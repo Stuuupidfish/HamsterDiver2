@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private int currentLevel;
     private float bubbleTimer = 0f;
     [SerializeField] private GameObject[] enemies = new GameObject[5];
     //private Player player;
@@ -86,6 +87,7 @@ public class GameManager : MonoBehaviour
             else if (!ui.IsGameOver && currentY < winY && currentY >= winY - 5.5)
             {
                 playerWins = true;
+                PlayerData.UnlockLevel(currentLevel + 1);
                 audioSource.Stop();
                 bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed);
             }
