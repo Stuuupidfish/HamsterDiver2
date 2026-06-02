@@ -673,6 +673,10 @@ PrefabInstance:
       value: Game
       objectReference: {fileID: 0}
     - target: {fileID: 1599612579918797926, guid: f868970481b5d8641b3f7a1bb26ed467, type: 3}
+      propertyPath: currentLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599612579918797926, guid: f868970481b5d8641b3f7a1bb26ed467, type: 3}
       propertyPath: enemySpawnInterval
       value: 8
       objectReference: {fileID: 0}
