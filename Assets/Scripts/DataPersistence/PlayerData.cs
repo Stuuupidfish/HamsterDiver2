@@ -5,6 +5,7 @@ public static class PlayerData
 {
     private const int LevelCount = 7;
     private static bool[] levelsUnlocked = new bool[LevelCount] { true, false, false, false, false, false, false };
+    private static bool[] levelsBeaten = new bool[LevelCount] { false, false, false, false, false, false, false };
     private static int[] levelScores = new int[LevelCount] { 0, 0, 0, 0, 0, 0, 0 };
     private static float endlessHighScore = 0f;
     public static float EndlessHighScore
@@ -33,7 +34,20 @@ public static class PlayerData
         levelsUnlocked[levelIndex] = true;
         OnChanged?.Invoke();
     }
+    public static void MarkLevelBeaten(int levelIndex)
+    {
+        if (!IsValidLevel(levelIndex) || levelsBeaten[levelIndex])
+        {
+            return;
+        }
 
+        levelsBeaten[levelIndex] = true;
+        OnChanged?.Invoke();
+    }
+    public static bool IsLevelBeaten(int levelIndex)
+    {
+        return IsValidLevel(levelIndex) && levelsBeaten[levelIndex];
+    }
     public static void SetLevelScore(int levelIndex, int score)
     {
         if (!IsValidLevel(levelIndex))

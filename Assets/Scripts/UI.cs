@@ -105,7 +105,8 @@ public class UI : MonoBehaviour
         {
             starCount = 0;
         }
-
+        
+        PlayerData.SetLevelScore(gameManager.CurrentLevel, starCount);
         GameObject[] starPrefabs = new GameObject[3];
         for (int i = 0; i < starCount; i++)
         {

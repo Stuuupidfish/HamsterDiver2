@@ -8,7 +8,6 @@ public class EndlessGameManager : MonoBehaviour
 {
     private float bubbleTimer = 0f;
 
-
     [SerializeField] private GameObject[] enemies = new GameObject[5];
     // ORDER OF ENEMIES IN THE ARRAY:
     // 0 : school of fish (-1)
@@ -127,6 +126,7 @@ public class EndlessGameManager : MonoBehaviour
             
             if (ui.IsGameOver)
             {
+                PlayerData.MarkLevelBeaten(6); // mark endless mode as beaten
                 audioSource.Stop();
             }
         }

@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private int currentLevel;
+    public int CurrentLevel
+    {
+        get { return currentLevel; }
+    }
     private float bubbleTimer = 0f;
     [SerializeField] private GameObject[] enemies = new GameObject[5];
     //private Player player;
@@ -88,6 +92,7 @@ public class GameManager : MonoBehaviour
             {
                 playerWins = true;
                 PlayerData.UnlockLevel(currentLevel + 1);
+                PlayerData.MarkLevelBeaten(currentLevel);
                 audioSource.Stop();
                 bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed);
             }

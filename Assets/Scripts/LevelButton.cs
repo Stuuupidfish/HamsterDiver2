@@ -11,6 +11,12 @@ public class LevelButton : MonoBehaviour, IPointerDownHandler
     private static readonly Color LockedButtonColor = new Color32(190, 190, 190, 255);
     private static readonly Color LockedTextColor = new Color32(200, 200, 200, 255);
     private static readonly Color UnlockedColor = Color.white;
+    private static readonly Vector2[] StarOffsets =
+    {
+        new Vector2(-25f, -50f),
+        new Vector2(0f, -50f),
+        new Vector2(25f, -50f)
+    };
 
     [SerializeField] private int levelIndex = 0;
     [SerializeField] private string sceneName;
@@ -21,7 +27,11 @@ public class LevelButton : MonoBehaviour, IPointerDownHandler
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip click;
     [SerializeField] private AudioClip denyClip;
+
+    [SerializeField] private bool isEndlessMode = false;
+    [SerializeField] private TextMeshProUGUI endlessHighScoreText;
     private Button button;
+    private readonly List<GameObject> spawnedScoreStars = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -57,15 +67,74 @@ public class LevelButton : MonoBehaviour, IPointerDownHandler
             buttonLabel.color = unlocked ? UnlockedColor : LockedTextColor;
         }
 
-        SetScoreStars(score);
+        if (!isEndlessMode)
+        {
+            SetScoreStars(score);
+            return;
+        }
+        DisplayEndlessHighScore(PlayerData.EndlessHighScore);
     }
-
+    public void DisplayEndlessHighScore(float highScore)
+    {
+        if (!PlayerData.IsLevelUnlocked(levelIndex) || PlayerData.IsLevelBeaten(levelIndex) == false) // Only show score if the level is unlocked and beaten
+        {
+            return;
+        }
+        endlessHighScoreText.text = "Best: " + highScore.ToString("F2") + "m";
+        endlessHighScoreText.gameObject.SetActive(true);
+    }
     public void SetScoreStars(int score)
     {
+        bool unlocked = PlayerData.IsLevelUnlocked(levelIndex);
+        int starCount = score;
+
         for (int i = 0; i < scoreStars.Length; i++)
         {
-            scoreStars[i] = i < score;
+            scoreStars[i] = i < starCount;
         }
+
+        ClearSpawnedScoreStars();
+
+        if (!unlocked || PlayerData.IsLevelBeaten(levelIndex) == false) // Only show stars if the level is unlocked and beaten
+        {
+            return;
+        }
+
+        for (int i = 0; i < StarOffsets.Length; i++)
+        {
+            bool isFullStar = i < starCount;
+            GameObject starPrefab = GetStarPrefab(isFullStar);
+            if (starPrefab == null)
+            {
+                continue;
+            }
+
+            GameObject spawnedStar = Instantiate(starPrefab, transform, false);
+            RectTransform starRectTransform = spawnedStar.GetComponent<RectTransform>();
+            if (starRectTransform != null)
+            {
+                starRectTransform.anchoredPosition = StarOffsets[i];
+            }
+            else
+            {
+                spawnedStar.transform.localPosition = StarOffsets[i];
+            }
+
+            spawnedScoreStars.Add(spawnedStar);
+        }
+    }
+
+    private void ClearSpawnedScoreStars()
+    {
+        for (int i = 0; i < spawnedScoreStars.Count; i++)
+        {
+            if (spawnedScoreStars[i] != null)
+            {
+                Destroy(spawnedScoreStars[i]);
+            }
+        }
+
+        spawnedScoreStars.Clear();
     }
 
     public bool[] GetScoreStars()

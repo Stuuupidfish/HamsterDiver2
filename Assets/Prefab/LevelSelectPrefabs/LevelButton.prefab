@@ -184,14 +184,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd54d743e7cef04fbee4f7f26a007cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelIndex: 1
-  sceneName: L2
+  levelIndex: 0
+  sceneName: L1
   scoreStars: 000000
-  emptyStarPrefab: {fileID: 2773978429085646030, guid: bd9085cb699b5a641aee8b411889b6d2, type: 3}
-  fullStarPrefab: {fileID: 468322303419518380, guid: 4f07f6c22ce351b4ebb24d102ce6c445, type: 3}
+  emptyStarPrefab: {fileID: 1742936655359081182, guid: 1b2c95374d82b5c41879b2dfb9cf2e21, type: 3}
+  fullStarPrefab: {fileID: 3735386252557847487, guid: 09045363d26c6ea49bca1083d6fbde5f, type: 3}
   audioSource: {fileID: 8322690436958744394}
   click: {fileID: 8300000, guid: df97dcaab30c5f64e9db32ca6ebc780c, type: 3}
-  denyClip: {fileID: 8300000, guid: ece1afd12178c824f83f67366551cd9b, type: 3}
+  denyClip: {fileID: 8300000, guid: bd9735c2be1eac64fa39e3fdf76bfd81, type: 3}
 --- !u!82 &8322690436958744394
 AudioSource:
   m_ObjectHideFlags: 0
