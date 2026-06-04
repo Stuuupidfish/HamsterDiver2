@@ -50,8 +50,8 @@ public class EndlessGameManager : MonoBehaviour
         get {return playerWins;}
     }
 
-    [SerializeField] private AudioSource audioSource;
-
+    //[SerializeField] private AudioSource audioSource;
+    [SerializeField] private MusicManager musicManager;
 
     [SerializeField] private float bubbleSpawnInterval = 1.5f;
     private float maxBubbleSpawnInterval = 0.5f; 
@@ -62,6 +62,7 @@ public class EndlessGameManager : MonoBehaviour
     void Start()
     {
         ui = FindObjectOfType<EndlessUI>();
+        musicManager = FindObjectOfType<MusicManager>();
         spawnNewEnemy();
         downSpeed = defaultSpeed;
         prevSpeed = downSpeed;
@@ -127,7 +128,8 @@ public class EndlessGameManager : MonoBehaviour
             if (ui.IsGameOver)
             {
                 PlayerData.MarkLevelBeaten(6); // mark endless mode as beaten
-                audioSource.Stop();
+                //audioSource.Stop();
+                musicManager.StopMusic();
             }
         }
     }

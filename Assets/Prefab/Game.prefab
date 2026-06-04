@@ -1413,7 +1413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 125, y: 200}
+  m_AnchoredPosition: {x: 120, y: 200}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7269322372717875178
@@ -1547,7 +1547,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 258}
+  m_AnchoredPosition: {x: -10, y: 258}
   m_SizeDelta: {x: 90, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &262504095487340173
@@ -1925,6 +1925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 293aa099c1613a74ba110724a596471b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentLevel: 0
   enemies:
   - {fileID: 6803951599151732553, guid: 811b13584e86b3e4f9a709c0c2315b3f, type: 3}
   - {fileID: 7574885625988010712, guid: b66431e29d99df54aaede28c3f0e8e67, type: 3}
@@ -1936,7 +1937,6 @@ MonoBehaviour:
   winY: -130
   defaultSpeed: 0.1
   audioSource: {fileID: 7854702162288066945}
-  click: {fileID: 8300000, guid: df97dcaab30c5f64e9db32ca6ebc780c, type: 3}
   bubbleSpawnInterval: 1.5
   enemySpawnInterval: 5.5
 --- !u!82 &7854702162288066945
@@ -2925,7 +2925,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 206.5, y: 250}
+  m_AnchoredPosition: {x: 196.5, y: 250}
   m_SizeDelta: {x: 187, y: 28}
   m_Pivot: {x: -0.0000000018626451, y: 0.5}
 --- !u!222 &1126407592357950
@@ -3016,7 +3016,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: 250}
+  m_AnchoredPosition: {x: 90, y: 250}
   m_SizeDelta: {x: 201, y: 201}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4900582841923064703
