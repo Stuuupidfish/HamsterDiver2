@@ -14,6 +14,50 @@ public static class PlayerData
     }
     public static event Action OnChanged;
 
+    [Serializable]
+    public class SaveData
+    {
+        public bool[] levelsUnlocked;
+        public bool[] levelsBeaten;
+        public int[] levelScores;
+        public float endlessHighScore;
+    }
+
+    public static SaveData GetSaveData()
+    {
+        SaveData saveData = new SaveData();
+        saveData.levelsUnlocked = (bool[])levelsUnlocked.Clone();
+        saveData.levelsBeaten = (bool[])levelsBeaten.Clone();
+        saveData.levelScores = (int[])levelScores.Clone();
+        saveData.endlessHighScore = endlessHighScore;
+        return saveData;
+    }
+
+    public static void LoadSaveData(SaveData saveData)
+    {
+        if (saveData == null)
+        {
+            return;
+        }
+
+        if (saveData.levelsUnlocked != null && saveData.levelsUnlocked.Length == LevelCount)
+        {
+            levelsUnlocked = (bool[])saveData.levelsUnlocked.Clone();
+        }
+
+        if (saveData.levelsBeaten != null && saveData.levelsBeaten.Length == LevelCount)
+        {
+            levelsBeaten = (bool[])saveData.levelsBeaten.Clone();
+        }
+
+        if (saveData.levelScores != null && saveData.levelScores.Length == LevelCount)
+        {
+            levelScores = (int[])saveData.levelScores.Clone();
+        }
+
+        endlessHighScore = saveData.endlessHighScore;
+    }
+
     public static bool IsLevelUnlocked(int levelIndex)
     {
         return IsValidLevel(levelIndex) && levelsUnlocked[levelIndex];
@@ -21,7 +65,12 @@ public static class PlayerData
 
     public static int GetLevelScore(int levelIndex)
     {
-        return IsValidLevel(levelIndex) ? levelScores[levelIndex] : 0;
+        if (!IsValidLevel(levelIndex))
+        {
+            return 0;
+        }
+
+        return levelScores[levelIndex];
     }
 
     public static void UnlockLevel(int levelIndex)
@@ -32,7 +81,10 @@ public static class PlayerData
         }
 
         levelsUnlocked[levelIndex] = true;
-        OnChanged?.Invoke();
+        if (OnChanged != null)
+        {
+            OnChanged.Invoke();
+        }
     }
     public static void MarkLevelBeaten(int levelIndex)
     {
@@ -42,7 +94,10 @@ public static class PlayerData
         }
 
         levelsBeaten[levelIndex] = true;
-        OnChanged?.Invoke();
+        if (OnChanged != null)
+        {
+            OnChanged.Invoke();
+        }
     }
     public static bool IsLevelBeaten(int levelIndex)
     {
@@ -58,7 +113,10 @@ public static class PlayerData
         if (score > levelScores[levelIndex])
         {
             levelScores[levelIndex] = score;
-            OnChanged?.Invoke();
+            if (OnChanged != null)
+            {
+                OnChanged.Invoke();
+            }
         }
     }
 
@@ -70,7 +128,10 @@ public static class PlayerData
         }
 
         endlessHighScore = distance;
-        OnChanged?.Invoke();
+        if (OnChanged != null)
+        {
+            OnChanged.Invoke();
+        }
     }
 
     private static bool IsValidLevel(int levelIndex)

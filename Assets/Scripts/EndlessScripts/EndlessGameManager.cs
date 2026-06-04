@@ -65,8 +65,6 @@ public class EndlessGameManager : MonoBehaviour
         spawnNewEnemy();
         downSpeed = defaultSpeed;
         prevSpeed = downSpeed;
-
-        // audioSource volume handling removed
     }
 
     // Update is called once per frame
@@ -108,8 +106,10 @@ public class EndlessGameManager : MonoBehaviour
                 bubbleSpawnInterval = Mathf.Max(bubbleSpawnInterval - 0.007f * Time.deltaTime, maxBubbleSpawnInterval);
                 enemySpawnInterval = Mathf.Max(enemySpawnInterval - 0.05f * Time.deltaTime, maxEnemySpawnInterval);
                 if (!damageSlowDown)
+                {
                     prevSpeed = downSpeed;
-                Debug.Log("Current down speed: " + downSpeed);
+                }
+                //Debug.Log("Current down speed: " + downSpeed);
                 totalDistanceTraveled += downSpeed * Time.deltaTime;
                 if (Vector2.Distance(bkg.GetComponent<Rigidbody2D>().position, lastSpawnPosition) >= enemySpawnInterval)
                 {
@@ -155,6 +155,4 @@ public class EndlessGameManager : MonoBehaviour
     {
         GameObject bubble = Instantiate(airBubble, new Vector2(UnityEngine.Random.Range(-2,3),6), Quaternion.identity);
     }
-
-    // music fade methods removed
 }

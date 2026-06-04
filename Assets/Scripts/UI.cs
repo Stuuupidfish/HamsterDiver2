@@ -78,16 +78,6 @@ public class UI : MonoBehaviour
 
     private IEnumerator WinSequence()
     {
-        youWin.SetActive(true);
-        menu.SetActive(true);
-        if (nextLvlButton != null)
-        {
-            nextLvlButton.SetActive(true);
-        }
-        audioSource.PlayOneShot(win);
-
-        yield return new WaitForSecondsRealtime(1f);
-
         int starCount;
         if (player.Oxygen >= 65)
         {
@@ -107,6 +97,16 @@ public class UI : MonoBehaviour
         }
         
         PlayerData.SetLevelScore(gameManager.CurrentLevel, starCount);
+
+        youWin.SetActive(true);
+        menu.SetActive(true);
+        if (nextLvlButton != null)
+        {
+            nextLvlButton.SetActive(true);
+        }
+        audioSource.PlayOneShot(win);
+
+        yield return new WaitForSecondsRealtime(1f);
         GameObject[] starPrefabs = new GameObject[3];
         for (int i = 0; i < starCount; i++)
         {
