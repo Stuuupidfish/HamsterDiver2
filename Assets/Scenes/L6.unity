@@ -273,7 +273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1599612579918797926, guid: f868970481b5d8641b3f7a1bb26ed467, type: 3}
       propertyPath: bubbleSpawnInterval
-      value: 1.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2749001143952452663, guid: f868970481b5d8641b3f7a1bb26ed467, type: 3}
       propertyPath: m_IsActive
@@ -327,6 +327,10 @@ PrefabInstance:
       propertyPath: nextLvlButton
       value: 
       objectReference: {fileID: 935788617}
+    - target: {fileID: 7854702162288066945, guid: f868970481b5d8641b3f7a1bb26ed467, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1d1a93657b026164e988d67f5ffc5e97, type: 3}
     - target: {fileID: 8129989320611255932, guid: f868970481b5d8641b3f7a1bb26ed467, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Endless

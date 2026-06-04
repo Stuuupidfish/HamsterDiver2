@@ -101,7 +101,7 @@ public class EndlessGameManager : MonoBehaviour
             float currentY = bkg.GetComponent<Rigidbody2D>().position.y;
             if (!ui.IsGameOver)
             {
-                bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed);
+                bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed * Time.deltaTime * SpeedScaler.VerticalScale);
                 downSpeed = Mathf.Min(downSpeed + accelerationRate * Time.deltaTime, maxSpeed);
                 bubbleSpawnInterval = Mathf.Max(bubbleSpawnInterval - 0.007f * Time.deltaTime, maxBubbleSpawnInterval);
                 enemySpawnInterval = Mathf.Max(enemySpawnInterval - 0.05f * Time.deltaTime, maxEnemySpawnInterval);

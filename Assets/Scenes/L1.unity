@@ -787,7 +787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1599612579918797926, guid: f868970481b5d8641b3f7a1bb26ed467, type: 3}
       propertyPath: enemySpawnInterval
-      value: 20
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1599612579918797926, guid: f868970481b5d8641b3f7a1bb26ed467, type: 3}
       propertyPath: bubbleSpawnInterval
@@ -865,6 +865,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7854702162288066945, guid: f868970481b5d8641b3f7a1bb26ed467, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 70987c297d6a05c4c99c6fe4cbec731f, type: 3}
     - target: {fileID: 8129989320611255932, guid: f868970481b5d8641b3f7a1bb26ed467, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: L2

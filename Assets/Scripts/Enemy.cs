@@ -54,8 +54,8 @@ public class Enemy : MonoBehaviour
         float downSpeed = gameManager.DownSpeed;
         float moveSpeed = speed*(downSpeed/0.1f); //left/right move speed is proportional to downwards move speed, so enemies don't move too fast when the background moves faster/slower
         Vector2 pos = rb.position;
-        pos.x += moveInput * moveSpeed * Time.fixedDeltaTime;
-        pos.y -= downSpeed;
+        pos.x += moveInput * moveSpeed * Time.fixedDeltaTime * SpeedScaler.HorizontalScale;
+        pos.y -= downSpeed * Time.fixedDeltaTime * SpeedScaler.VerticalScale;
         if (!ui.IsPaused)
         {
             rb.MovePosition(pos);

@@ -22,7 +22,7 @@ public class EndlessAirBubble : MonoBehaviour
     {
         float downSpeed = endlessGameManager.DownSpeed;
         Vector2 pos = rb.position;
-        pos.y -= downSpeed;
+        pos.y -= downSpeed * Time.fixedDeltaTime * SpeedScaler.VerticalScale;
         rb.MovePosition(pos);
     }
 }

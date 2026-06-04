@@ -22,7 +22,7 @@ public class AirBubble : MonoBehaviour
     {
         float downSpeed = gameManager.DownSpeed;
         Vector2 pos = rb.position;
-        pos.y -= downSpeed;
+        pos.y -= downSpeed * Time.fixedDeltaTime * SpeedScaler.VerticalScale;
         rb.MovePosition(pos);
     }
 }

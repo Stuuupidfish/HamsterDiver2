@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
             float currentY = bkg.GetComponent<Rigidbody2D>().position.y;
             if (!ui.IsGameOver && currentY >= winY)
             {
-                bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed);
+                bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed * Time.deltaTime * SpeedScaler.VerticalScale);
                 if (currentY > winY + 15) //to prevent spawning enemies at the surface
                 {
                     if (Vector2.Distance(bkg.GetComponent<Rigidbody2D>().position, lastSpawnPosition) >= enemySpawnInterval)
@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
                 PlayerData.UnlockLevel(currentLevel + 1);
                 PlayerData.MarkLevelBeaten(currentLevel);
                 audioSource.Stop();
-                bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed);
+                bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed * Time.deltaTime * SpeedScaler.VerticalScale);
             }
             
             if (ui.IsGameOver)

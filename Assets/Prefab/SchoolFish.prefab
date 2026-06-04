@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oxygenDepletion: 1
   enemyType: School
-  speed: 2
+  speed: 1.5
   audioSource: {fileID: 8877056570389677469}
   sound: {fileID: 8300000, guid: 4c7acc7e1f42bc04496e90df5eb13ee2, type: 3}
 --- !u!61 &1482941924012675316
