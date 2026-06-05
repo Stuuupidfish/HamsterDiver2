@@ -36,8 +36,9 @@ public class EndlessGameManager : MonoBehaviour
     [SerializeField] private Sprite[] backgroundSprites;
     private int nextBackgroundSpriteIndex = 2;
 
-    //private Vector2 lastSpawnPosition;
-    private float lastSpawnDistance = 0f;
+    private Vector2 lastSpawnPosition;
+    //private float lastSpawnDistance = 0f;
+    
     private float defaultSpeed = 0.06f; //0.1f is the original speed, but will be changed for additinal levels so ill treat it as like the basis
     
     private float accelerationRate = 0.0005f; //the rate at which the game speeds up, the game will speed up by this amount every frame
@@ -66,8 +67,8 @@ public class EndlessGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        curBkg.GetComponent<Rigidbody2D>().position = new Vector2(0, 105f);
-        nextBkg.GetComponent<Rigidbody2D>().position = curBkg.GetComponent<Rigidbody2D>().position + new Vector2(0, 221f);
+        //curBkg.GetComponent<Rigidbody2D>().position = new Vector2(0, 105f);
+        //nextBkg.GetComponent<Rigidbody2D>().position = curBkg.GetComponent<Rigidbody2D>().position + new Vector2(0, 221f);
         ApplyBackgroundSprite(curBkg, 0);
         ApplyBackgroundSprite(nextBkg, 1);
         nextBackgroundSpriteIndex = 2;
@@ -124,15 +125,15 @@ public class EndlessGameManager : MonoBehaviour
                 }
                 //Debug.Log("Current down speed: " + downSpeed);
                 totalDistanceTraveled += downSpeed * Time.deltaTime;
-                // if (Vector2.Distance(curBkg.GetComponent<Rigidbody2D>().position, lastSpawnPosition) >= enemySpawnInterval)
-                // {
-                //     SpawnNewEnemy();
-                    
-                // }
-                if (Math.Abs(totalDistanceTraveled - lastSpawnDistance) >= enemySpawnInterval)
+                if (Vector2.Distance(curBkg.GetComponent<Rigidbody2D>().position, lastSpawnPosition) >= enemySpawnInterval)
                 {
                     SpawnNewEnemy();
+                    
                 }
+                // if (Math.Abs(totalDistanceTraveled - lastSpawnDistance) >= enemySpawnInterval)
+                // {
+                //     SpawnNewEnemy();
+                // }
                 // Bubble spawn timer
                 bubbleTimer += Time.deltaTime;
                 if (bubbleTimer >= bubbleSpawnInterval)
@@ -143,10 +144,10 @@ public class EndlessGameManager : MonoBehaviour
 
                 if (currentY <= -80f)
                 {
-                    nextBkg.GetComponent<Rigidbody2D>().position = curBkg.GetComponent<Rigidbody2D>().position + new Vector2(0, 220f);
+                    nextBkg.GetComponent<Rigidbody2D>().position = curBkg.GetComponent<Rigidbody2D>().position + new Vector2(0, 330f);
                     ApplyBackgroundSprite(nextBkg, nextBackgroundSpriteIndex);
                     nextBackgroundSpriteIndex = GetNextBackgroundSpriteIndex(nextBackgroundSpriteIndex);
-                    Debug.Log("Cylcing");
+                    //Debug.Log("Cylcing");
                     GameObject recycledBkg = curBkg;
                     curBkg = nextBkg;
                     nextBkg = recycledBkg;
@@ -179,8 +180,8 @@ public class EndlessGameManager : MonoBehaviour
     private void SpawnNewEnemy()
     {
         GameObject newObject = Instantiate(enemies[UnityEngine.Random.Range(0, enemySelectionRange)], new Vector2(UnityEngine.Random.Range(-5,6), 6), Quaternion.identity);
-        //lastSpawnPosition = curBkg.GetComponent<Rigidbody2D>().position;
-        lastSpawnDistance = totalDistanceTraveled;
+        lastSpawnPosition = curBkg.GetComponent<Rigidbody2D>().position;
+        //lastSpawnDistance = totalDistanceTraveled;
     }
 
     private void SpawnAirBubble()

@@ -56,13 +56,8 @@ public class EndlessUI : MonoBehaviour
         if (player.Oxygen == 0 && !IsGameOver)
         {
             GameOver();
+            player.Die();
         }
-        
-        // if (endlessGameManager.PlayerWins && !hasWinBeenTriggered)
-        // {
-        //     Win();
-        //     hasWinBeenTriggered = true;
-        // }
     }
     public void GameOver()
     {
@@ -75,12 +70,6 @@ public class EndlessUI : MonoBehaviour
         if (audioSource != null && endGame != null)
             audioSource.PlayOneShot(endGame);
     }
-    // public void Win()
-    // {
-    //     audioSource.PlayOneShot(win);
-    //     youWin.SetActive(true);
-    //     menu.SetActive(true);
-    // }
     public void Pause()
     {
         Time.timeScale = 0f;

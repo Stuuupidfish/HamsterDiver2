@@ -535,8 +535,8 @@ Transform:
   m_GameObject: {fileID: 1124192619}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 105, z: 0}
-  m_LocalScale: {x: 11, y: 11, z: 1}
+  m_LocalPosition: {x: 0, y: 160, z: 0}
+  m_LocalScale: {x: 11.1, y: 11, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9034588892463587106}
@@ -587,7 +587,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3, y: 100.721306}
+  m_Size: {x: 3.0029297, y: 150}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -647,8 +647,8 @@ Transform:
   m_GameObject: {fileID: 1351824449}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 326, z: 0}
-  m_LocalScale: {x: 11, y: 11, z: 1}
+  m_LocalPosition: {x: 0, y: 490, z: 0}
+  m_LocalScale: {x: 11.1, y: 11, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9034588892463587106}
@@ -699,7 +699,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3, y: 100.721306}
+  m_Size: {x: 3.0029297, y: 150}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -4187,7 +4187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d677d5fda8e984391d6bb81321c93f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dead: {fileID: 0}
+  dead: {fileID: 91741023, guid: 5443c3a0b4b87b74f92b34c16ba8664c, type: 3}
   audioSource: {fileID: 3896513654561384080}
   pop: {fileID: 8300000, guid: 033bdf4889ae52b40bd6192653a2e4a1, type: 3}
   hurt:

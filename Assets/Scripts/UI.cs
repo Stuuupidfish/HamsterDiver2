@@ -55,6 +55,7 @@ public class UI : MonoBehaviour
         if (player.Oxygen == 0 && !IsGameOver)
         {
             GameOver();
+            player.Die();
         }
         
         if (gameManager.PlayerWins && !hasWinBeenTriggered)

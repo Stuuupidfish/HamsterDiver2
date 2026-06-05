@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         rb.position = new Vector2(0, -3);
         oxygen = 100f;
+        animator.enabled = true;
     }
 
     // Update is called once per frame
@@ -56,15 +57,17 @@ public class Player : MonoBehaviour
         }
 
         // Death from drowning - trigger death animation only once
-        if (oxygen <= 0 && !isDead)
-        {
-            oxygen = 0f;
-            isDead = true;
-            animator.SetTrigger("Dead");
-            audioSource.Stop();
-            audioSource.PlayOneShot(die);
-            GetComponent<SpriteRenderer>().sprite = dead;
-        }
+        // if (oxygen <= 0 && !isDead)
+        // {
+        //     oxygen = 0f;
+        //     isDead = true;
+        //     //animator.SetTrigger("Dead");
+        //     audioSource.Stop();
+        //     audioSource.PlayOneShot(die);
+        //     animator.enabled = false;
+        //     Debug.Log("DISABLE THE ANIMTORB");
+        //     GetComponent<SpriteRenderer>().sprite = dead;
+        // }
 
         if (ui.IsGameOver)
         {
@@ -111,12 +114,14 @@ public class Player : MonoBehaviour
             if (oxygen - enemy.OxygenDepletion <= 0)
             {
                 //Debug.Log("Dead");
-                oxygen = 0f;
-                isDead = true;
-                animator.SetTrigger("Dead");
-                audioSource.Stop();
-                audioSource.PlayOneShot(die);
-                GetComponent<SpriteRenderer>().sprite = dead;
+                // oxygen = 0f;
+                // isDead = true;
+                // animator.SetTrigger("Dead");
+                // audioSource.Stop();
+                // audioSource.PlayOneShot(die);
+                // animator.enabled = false;
+                // GetComponent<SpriteRenderer>().sprite = dead;
+                Die();
             }
             else
             {
@@ -144,5 +149,14 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
-
+    public void Die()
+    {
+        if (isDead) return;
+        oxygen = 0f;
+        isDead = true;
+        audioSource.Stop();
+        audioSource.PlayOneShot(die);
+        animator.enabled = false;
+        GetComponent<SpriteRenderer>().sprite = dead;
+    }
 }
