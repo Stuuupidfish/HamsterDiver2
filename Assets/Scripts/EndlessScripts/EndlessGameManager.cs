@@ -31,8 +31,13 @@ public class EndlessGameManager : MonoBehaviour
         get {return damageSlowDown;}
     }
     [SerializeField] private GameObject airBubble;
-    [SerializeField] private GameObject bkg;
-    private Vector2 lastSpawnPosition;
+    [SerializeField] private GameObject curBkg;
+    [SerializeField] private GameObject nextBkg;
+    [SerializeField] private Sprite[] backgroundSprites;
+    private int nextBackgroundSpriteIndex = 2;
+
+    //private Vector2 lastSpawnPosition;
+    private float lastSpawnDistance = 0f;
     private float defaultSpeed = 0.06f; //0.1f is the original speed, but will be changed for additinal levels so ill treat it as like the basis
     
     private float accelerationRate = 0.0005f; //the rate at which the game speeds up, the game will speed up by this amount every frame
@@ -61,9 +66,15 @@ public class EndlessGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        curBkg.GetComponent<Rigidbody2D>().position = new Vector2(0, 17f);
+        nextBkg.GetComponent<Rigidbody2D>().position = curBkg.GetComponent<Rigidbody2D>().position + new Vector2(0, 44f);
+        ApplyBackgroundSprite(curBkg, 0);
+        ApplyBackgroundSprite(nextBkg, 1);
+        nextBackgroundSpriteIndex = 2;
+
         ui = FindObjectOfType<EndlessUI>();
         musicManager = FindObjectOfType<MusicManager>();
-        spawnNewEnemy();
+        SpawnNewEnemy();
         downSpeed = defaultSpeed;
         prevSpeed = downSpeed;
     }
@@ -99,30 +110,48 @@ public class EndlessGameManager : MonoBehaviour
                 enemySelectionRange = 5; 
             }
 
-            float currentY = bkg.GetComponent<Rigidbody2D>().position.y;
+            float currentY = curBkg.GetComponent<Rigidbody2D>().position.y;
             if (!ui.IsGameOver)
             {
-                bkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed * Time.deltaTime * SpeedScaler.VerticalScale);
+                curBkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed * Time.deltaTime * SpeedScaler.VerticalScale);
+                nextBkg.GetComponent<Rigidbody2D>().position += new Vector2(0, -downSpeed * Time.deltaTime * SpeedScaler.VerticalScale);
                 downSpeed = Mathf.Min(downSpeed + accelerationRate * Time.deltaTime, maxSpeed);
                 bubbleSpawnInterval = Mathf.Max(bubbleSpawnInterval - 0.007f * Time.deltaTime, maxBubbleSpawnInterval);
-                enemySpawnInterval = Mathf.Max(enemySpawnInterval - 0.05f * Time.deltaTime, maxEnemySpawnInterval);
+                enemySpawnInterval = Mathf.Max(enemySpawnInterval - 0.04f * Time.deltaTime, maxEnemySpawnInterval);
                 if (!damageSlowDown)
                 {
                     prevSpeed = downSpeed;
                 }
                 //Debug.Log("Current down speed: " + downSpeed);
                 totalDistanceTraveled += downSpeed * Time.deltaTime;
-                if (Vector2.Distance(bkg.GetComponent<Rigidbody2D>().position, lastSpawnPosition) >= enemySpawnInterval)
+                // if (Vector2.Distance(curBkg.GetComponent<Rigidbody2D>().position, lastSpawnPosition) >= enemySpawnInterval)
+                // {
+                //     SpawnNewEnemy();
+                    
+                // }
+                if (totalDistanceTraveled - lastSpawnDistance >= enemySpawnInterval)
                 {
-                    spawnNewEnemy();
+                    SpawnNewEnemy();
                 }
                 // Bubble spawn timer
                 bubbleTimer += Time.deltaTime;
                 if (bubbleTimer >= bubbleSpawnInterval)
                 {
-                    spawnAirBubble();
+                    SpawnAirBubble();
                     bubbleTimer = 0f;
                 }
+
+                if (currentY <= -16f)
+                {
+                    Debug.Log("Cylcing");
+                    GameObject recycledBkg = curBkg;
+                    curBkg = nextBkg;
+                    nextBkg = recycledBkg;
+                    ApplyBackgroundSprite(nextBkg, nextBackgroundSpriteIndex);
+                    nextBackgroundSpriteIndex = GetNextBackgroundSpriteIndex(nextBackgroundSpriteIndex);
+                    nextBkg.GetComponent<Rigidbody2D>().position = curBkg.GetComponent<Rigidbody2D>().position + new Vector2(0, 21f);
+                }
+
             }
             
             if (ui.IsGameOver)
@@ -147,14 +176,41 @@ public class EndlessGameManager : MonoBehaviour
         damageSlowDown = false;
     }
 
-    private void spawnNewEnemy()
+    private void SpawnNewEnemy()
     {
         GameObject newObject = Instantiate(enemies[UnityEngine.Random.Range(0, enemySelectionRange)], new Vector2(UnityEngine.Random.Range(-5,6), 6), Quaternion.identity);
-        lastSpawnPosition = bkg.GetComponent<Rigidbody2D>().position;
+        //lastSpawnPosition = curBkg.GetComponent<Rigidbody2D>().position;
+        lastSpawnDistance = totalDistanceTraveled;
     }
 
-    private void spawnAirBubble()
+    private void SpawnAirBubble()
     {
         GameObject bubble = Instantiate(airBubble, new Vector2(UnityEngine.Random.Range(-2,3),6), Quaternion.identity);
+    }
+
+    private void ApplyBackgroundSprite(GameObject backgroundObject, int spriteIndex)
+    {
+        if (spriteIndex < 0 || spriteIndex >= backgroundSprites.Length)
+        {
+            return;
+        }
+        Debug.Log($"Applying sprite index {spriteIndex} to {backgroundObject.name}, array length: {backgroundSprites.Length}");
+        SpriteRenderer spriteRenderer = backgroundObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = backgroundSprites[spriteIndex];
+    }
+
+    private int GetNextBackgroundSpriteIndex(int currentIndex)
+    {
+        if (backgroundSprites.Length <= 2)
+        {
+            return 1;
+        }
+
+        if (currentIndex >= backgroundSprites.Length - 1)
+        {
+            return 1;
+        }
+
+        return currentIndex + 1;
     }
 }
