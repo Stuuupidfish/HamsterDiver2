@@ -66,8 +66,8 @@ public class EndlessGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        curBkg.GetComponent<Rigidbody2D>().position = new Vector2(0, 17f);
-        nextBkg.GetComponent<Rigidbody2D>().position = curBkg.GetComponent<Rigidbody2D>().position + new Vector2(0, 44f);
+        curBkg.GetComponent<Rigidbody2D>().position = new Vector2(0, 105f);
+        nextBkg.GetComponent<Rigidbody2D>().position = curBkg.GetComponent<Rigidbody2D>().position + new Vector2(0, 221f);
         ApplyBackgroundSprite(curBkg, 0);
         ApplyBackgroundSprite(nextBkg, 1);
         nextBackgroundSpriteIndex = 2;
@@ -129,7 +129,7 @@ public class EndlessGameManager : MonoBehaviour
                 //     SpawnNewEnemy();
                     
                 // }
-                if (totalDistanceTraveled - lastSpawnDistance >= enemySpawnInterval)
+                if (Math.Abs(totalDistanceTraveled - lastSpawnDistance) >= enemySpawnInterval)
                 {
                     SpawnNewEnemy();
                 }
@@ -141,15 +141,15 @@ public class EndlessGameManager : MonoBehaviour
                     bubbleTimer = 0f;
                 }
 
-                if (currentY <= -16f)
+                if (currentY <= -80f)
                 {
+                    nextBkg.GetComponent<Rigidbody2D>().position = curBkg.GetComponent<Rigidbody2D>().position + new Vector2(0, 220f);
+                    ApplyBackgroundSprite(nextBkg, nextBackgroundSpriteIndex);
+                    nextBackgroundSpriteIndex = GetNextBackgroundSpriteIndex(nextBackgroundSpriteIndex);
                     Debug.Log("Cylcing");
                     GameObject recycledBkg = curBkg;
                     curBkg = nextBkg;
                     nextBkg = recycledBkg;
-                    ApplyBackgroundSprite(nextBkg, nextBackgroundSpriteIndex);
-                    nextBackgroundSpriteIndex = GetNextBackgroundSpriteIndex(nextBackgroundSpriteIndex);
-                    nextBkg.GetComponent<Rigidbody2D>().position = curBkg.GetComponent<Rigidbody2D>().position + new Vector2(0, 21f);
                 }
 
             }
