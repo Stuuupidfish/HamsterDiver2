@@ -195,7 +195,7 @@ public class EndlessGameManager : MonoBehaviour
         {
             return;
         }
-        Debug.Log($"Applying sprite index {spriteIndex} to {backgroundObject.name}, array length: {backgroundSprites.Length}");
+        //Debug.Log($"Applying sprite index {spriteIndex} to {backgroundObject.name}, array length: {backgroundSprites.Length}");
         SpriteRenderer spriteRenderer = backgroundObject.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = backgroundSprites[spriteIndex];
     }
