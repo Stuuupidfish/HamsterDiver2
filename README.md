@@ -16,9 +16,9 @@ Original submission for Global Game Jam 2026 at NYU: https://globalgamejam.org/g
 ### Credits:
 [Elaine C](https://github.com/Stuuupidfish) - Game Development/Programming + Art (secondary)
 
-[Charlotte N](https://github.com/chailattee) - Art (primary) + Animation
+[Sarah Z](https://github.com/chailattee) - Art (primary) + Animation
 
-[Sarah Z](https://github.com/szhangk) - Music + Audio SFX
+[Charlotte N](https://github.com/szhangk) - Music + Audio SFX
 
 #### Music/SFX:
 - [Atmospheric puzzles](https://opengameart.org/content/atmospheric-puzzles) by legoluft Licensed under Creative Commons (CC0)
